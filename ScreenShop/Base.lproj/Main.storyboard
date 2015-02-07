@@ -32,8 +32,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fakeiphonemessage.png" translatesAutoresizingMaskIntoConstraints="NO" id="96s-ns-DS3">
-                                <rect key="frame" x="239" y="90" width="123" height="170"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="fakeiphonemessage.png" translatesAutoresizingMaskIntoConstraints="NO" id="96s-ns-DS3">
+                                <rect key="frame" x="0.0" y="90" width="600" height="170"/>
                                 <color key="backgroundColor" red="1" green="0.39769250401904455" blue="0.13558773963585569" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="123" id="hFd-UU-jIv"/>
@@ -52,7 +52,7 @@
                                 <rect key="frame" x="256" y="543" width="39" height="37"/>
                             </pageControl>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yjN-fg-hTM">
-                                <rect key="frame" x="13" y="379" width="574" height="213"/>
+                                <rect key="frame" x="10" y="374" width="574" height="213"/>
                                 <color key="backgroundColor" red="0.90730628188775508" green="0.89046752144060015" blue="0.85781769132474039" alpha="0.35999999999999999" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="DMg-EV-x9y">
                                     <size key="itemSize" width="508" height="213"/>
@@ -61,6 +61,35 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="notificationCell" id="BTY-hh-Vm9">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="508" height="213"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gLi-re-8wr">
+                                                    <rect key="frame" x="168" y="56" width="173" height="30"/>
+                                                    <state key="normal" title="Add Random Notification">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="randomNotificationAdded:" destination="Iea-Xm-Oov" eventType="touchUpInside" id="eVX-Qc-A72"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VKi-mg-tIJ">
+                                                    <rect key="frame" x="154" y="115" width="201" height="30"/>
+                                                    <state key="normal" title="Remove Random Notification">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="randomNotificationRemoved:" destination="Iea-Xm-Oov" eventType="touchUpInside" id="YOb-j1-Fdw"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="batteryCell" id="TLa-0d-e0z">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
@@ -135,6 +164,55 @@
                                             <constraint firstItem="n2Z-pB-d2U" firstAttribute="top" secondItem="aaX-yQ-n8C" secondAttribute="bottom" constant="39" id="lU5-K9-alY"/>
                                         </constraints>
                                     </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="carrierCell" id="lWp-S2-uNk">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="508" height="213"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ERf-9d-VLj">
+                                                    <rect key="frame" x="-8" y="21" width="508" height="162"/>
+                                                    <connections>
+                                                        <outlet property="dataSource" destination="Iea-Xm-Oov" id="e5f-ma-sV2"/>
+                                                        <outlet property="delegate" destination="Iea-Xm-Oov" id="hHK-er-VTz"/>
+                                                    </connections>
+                                                </pickerView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="timeCell" id="61Q-Pg-2yx">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="508" height="213"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S6S-zs-ACw">
+                                                    <rect key="frame" x="235" y="8" width="38" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="56" id="Kdw-1Q-eWw"/>
+                                                        <constraint firstAttribute="height" constant="21" id="nfH-PT-VZS"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Xar-HH-25b">
+                                                    <rect key="frame" x="0.0" y="43" width="508" height="162"/>
+                                                    <date key="date" timeIntervalSinceReferenceDate="444994137.78165197">
+                                                        <!--2015-02-07 09:28:57 +0000-->
+                                                    </date>
+                                                </datePicker>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="S6S-zs-ACw" firstAttribute="top" secondItem="61Q-Pg-2yx" secondAttribute="topMargin" constant="37" id="Yxa-KM-88n"/>
+                                            <constraint firstItem="S6S-zs-ACw" firstAttribute="leading" secondItem="61Q-Pg-2yx" secondAttribute="leading" constant="220" id="caP-zX-Np5"/>
+                                        </constraints>
+                                    </collectionViewCell>
                                 </cells>
                                 <connections>
                                     <outlet property="dataSource" destination="Iea-Xm-Oov" id="Ylz-aO-QTc"/>
@@ -145,18 +223,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="V06-6z-URI" firstAttribute="leading" secondItem="XQm-Ew-SPU" secondAttribute="leading" id="2Lg-qG-HlJ"/>
-                            <constraint firstItem="yjN-fg-hTM" firstAttribute="leading" secondItem="jV6-Nz-x23" secondAttribute="leadingMargin" constant="-6" id="4Te-vv-adC"/>
+                            <constraint firstItem="7i6-dd-Aax" firstAttribute="top" secondItem="yjN-fg-hTM" secondAttribute="bottom" constant="8" symbolic="YES" id="5PB-E1-JHk"/>
+                            <constraint firstItem="yjN-fg-hTM" firstAttribute="top" secondItem="XQm-Ew-SPU" secondAttribute="bottom" constant="64" id="5l6-dC-1Sb"/>
                             <constraint firstItem="96s-ns-DS3" firstAttribute="centerX" secondItem="XQm-Ew-SPU" secondAttribute="centerX" id="G0j-EQ-MMp"/>
                             <constraint firstItem="XQm-Ew-SPU" firstAttribute="centerY" secondItem="jV6-Nz-x23" secondAttribute="centerY" id="LQf-mN-jFX"/>
-                            <constraint firstItem="yjN-fg-hTM" firstAttribute="bottom" secondItem="7i6-dd-Aax" secondAttribute="top" id="O7K-Fe-Hcl"/>
-                            <constraint firstItem="yjN-fg-hTM" firstAttribute="leading" secondItem="jV6-Nz-x23" secondAttribute="leading" constant="10" id="Rbe-PC-CEj"/>
                             <constraint firstItem="XQm-Ew-SPU" firstAttribute="top" secondItem="96s-ns-DS3" secondAttribute="bottom" constant="25" id="V9l-Vc-FE7"/>
-                            <constraint firstItem="yjN-fg-hTM" firstAttribute="top" secondItem="XQm-Ew-SPU" secondAttribute="bottom" constant="72" id="aww-41-f1x"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="yjN-fg-hTM" secondAttribute="trailing" id="lo7-Yp-j2B"/>
                             <constraint firstItem="96s-ns-DS3" firstAttribute="top" secondItem="Du6-rI-lVE" secondAttribute="bottom" constant="26" id="lvX-l1-Gbh"/>
-                            <constraint firstItem="yjN-fg-hTM" firstAttribute="centerX" secondItem="XQm-Ew-SPU" secondAttribute="centerX" constant="-3.5" id="oWq-7z-5PE"/>
                             <constraint firstAttribute="bottom" secondItem="V06-6z-URI" secondAttribute="bottom" constant="20" symbolic="YES" id="sGs-Ap-x8h"/>
+                            <constraint firstItem="yjN-fg-hTM" firstAttribute="leading" secondItem="jV6-Nz-x23" secondAttribute="leadingMargin" constant="-3" id="wY0-8H-SV4"/>
                             <constraint firstItem="XQm-Ew-SPU" firstAttribute="centerX" secondItem="jV6-Nz-x23" secondAttribute="centerX" id="xGL-YV-eXj"/>
+                            <constraint firstItem="yjN-fg-hTM" firstAttribute="centerX" secondItem="XQm-Ew-SPU" secondAttribute="centerX" id="ybO-eh-UDM"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="ScreenShop" id="Nim-hS-Jt3">

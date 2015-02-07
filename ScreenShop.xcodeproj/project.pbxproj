@@ -92,9 +92,7 @@
 				82A7E8F61A85DE3D008A1581 /* AppDelegate.m */,
 				82A7E8F81A85DE3D008A1581 /* MasterViewController.h */,
 				82A7E8F91A85DE3D008A1581 /* MasterViewController.m */,
-				82A7E91F1A85F638008A1581 /* ControlCollectionViewCell.h */,
-				82A7E9201A85F638008A1581 /* ControlCollectionViewCell.m */,
-				82A7E9211A85F638008A1581 /* ControlCollectionViewCell.xib */,
+				82A7E9241A86105D008A1581 /* unused */,
 				82A7E8FE1A85DE3E008A1581 /* Main.storyboard */,
 				82A7E9011A85DE3E008A1581 /* Images.xcassets */,
 				82A7E91C1A85E716008A1581 /* photos */,
@@ -136,6 +134,16 @@
 				82A7E91A1A85E70C008A1581 /* fakeiphonemessage.png */,
 			);
 			name = photos;
+			sourceTree = "<group>";
+		};
+		82A7E9241A86105D008A1581 /* unused */ = {
+			isa = PBXGroup;
+			children = (
+				82A7E91F1A85F638008A1581 /* ControlCollectionViewCell.h */,
+				82A7E9201A85F638008A1581 /* ControlCollectionViewCell.m */,
+				82A7E9211A85F638008A1581 /* ControlCollectionViewCell.xib */,
+			);
+			name = unused;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
