@@ -9,6 +9,10 @@
 #import "MasterViewController.h"
 #import "ControlCollectionViewCell.h"
 
+#import "ActionSheetStringPicker.h"
+#import "ActionSheetDatePicker.h"
+
+
 @interface MasterViewController ()
 
 @property NSInteger batteryLevel;
@@ -106,7 +110,7 @@
     }
     
     self.batteryLabel.text = [NSString stringWithFormat:@"Battery: %li%%", self.batteryLevel];
-    
+    [self updateBatteryLevelOnScreenshot];
 }
 
 -(void)receptionLevelAdjusted:(id)sender {
@@ -160,6 +164,9 @@
     self.selectedNotificationName = nil;
     
     [self removeNotificationFromScreenshot];
+    
+}
+-(void)updateBatteryLevelOnScreenshot {
     
 }
 
@@ -258,6 +265,82 @@
         self.batteryLabel.text = [NSString stringWithFormat:@"Battery: %li%%", self.batteryLevel];
     }*/
 }
+#pragma mark ActionSheets -
+
+-(IBAction)showCarrierPicker:(id)sender {
+    
+    int selectedIndex = 0;
+    
+    if (self.carrier) {
+        for (int i = 0; i < self.carriers.count; ++i) {
+            if ([(NSString *)[self.carriers objectAtIndex:i] isEqualToString:self.carrier]){
+                selectedIndex = i;
+                break;
+            }
+        }
+    }
+    
+    [ActionSheetStringPicker showPickerWithTitle:@"Select carrier" rows:self.carriers initialSelection:selectedIndex doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+        self.carrier = [self.carriers objectAtIndex:selectedIndex];
+        [self updateCarrierOnScreenshot];
+    } cancelBlock:^(ActionSheetStringPicker *picker) {
+        
+    } origin:self.carrierButton];
+    
+}
+
+-(IBAction)showReceptionPicker:(id)sender {
+    
+    [ActionSheetStringPicker showPickerWithTitle:@"Select reception level" rows:@[@"No bars", @"1 bar", @"2 bars", @"3 bars", @"Full bars"] initialSelection:self.receptionLevel doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+        self.receptionLevel = selectedIndex;
+        [self updateReceptionOnScreenshot];
+    } cancelBlock:^(ActionSheetStringPicker *picker) {
+        
+    } origin:self.carrierButton];
+    
+}
+
+-(IBAction)showTimePicker:(id)sender {
+    
+    [ActionSheetDatePicker showPickerWithTitle:@"Select time" datePickerMode:UIDatePickerModeTime selectedDate:[NSDate date] doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
+        
+        [self timeUpdated:selectedDate];
+        
+    } cancelBlock:^(ActionSheetDatePicker *picker) {
+        
+    } origin:self.timeButton];
+    
+}
+-(IBAction)showBatteryPicker:(id)sender {
+    
+    int selectedIndex;
+    
+    if (self.batteryLevel == BATTERY_NOT_SET) {
+        selectedIndex = 0;
+    }
+    else if (self.batteryLevel == 0){
+        selectedIndex = 1;
+    }
+    else {
+        selectedIndex = 2;
+    }
+    
+    [ActionSheetStringPicker showPickerWithTitle:@"Select battery level" rows:@[@"Unchanged", @"Empty", @"Full"]initialSelection:selectedIndex doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+        
+        if (selectedIndex == 0)
+            self.batteryLevel = BATTERY_NOT_SET;
+        else if (selectedIndex == 1)
+            self.batteryLevel = 0;
+        else
+            self.batteryLevel = 100;
+        
+        [self updateBatteryLevelOnScreenshot];
+    } cancelBlock:^(ActionSheetStringPicker *picker) {
+        
+    } origin:self.carrierButton];
+    
+}
+
 
 #pragma mark UIPickerView -
 

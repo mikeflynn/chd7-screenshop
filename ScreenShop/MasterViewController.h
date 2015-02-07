@@ -23,10 +23,21 @@
 
 -(IBAction)save:(id)sender;
 -(IBAction)changePhotoButtonPushed:(id)sender;
+-(IBAction)showCarrierPicker:(id)sender;
+-(IBAction)showBatteryPicker:(id)sender;
+-(IBAction)showTimePicker:(id)sender;
+//-(IBAction)showNotificationPicker:(id)sender;
+-(IBAction)showReceptionPicker:(id)sender;
 
 //buttons
 -(IBAction)randomNotificationAdded:(id)sender;
 -(IBAction)randomNotificationRemoved:(id)sender;
+
+@property (nonatomic) IBOutlet UIButton *carrierButton;
+@property (nonatomic) IBOutlet UIButton *receptionButton;
+@property (nonatomic) IBOutlet UIButton *notificationButton;
+@property (nonatomic) IBOutlet UIButton *batteryButton;
+@property (nonatomic) IBOutlet UIButton *timeButton;
 
 @property (nonatomic) IBOutlet UIImageView *screenshotImageView;
 @property (nonatomic) IBOutlet UICollectionView *collectionView;
