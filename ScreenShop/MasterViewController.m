@@ -293,7 +293,7 @@
     
     if(self.batteryLevel == 0) {
         self.batteryOverlay.hidden = NO;
-        self.batteryOverlay.backgroundColor = [UIColor redColor];
+        self.batteryOverlay.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"battery_empty"]];
         self.batteryOverlay.image = nil;
     } else if(self.batteryLevel == 100) {
         self.batteryOverlay.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"battery_full"]];

@@ -21,6 +21,7 @@
 		023F06C41A869E4C003C6A2A /* carrier_sprint.png in Resources */ = {isa = PBXBuildFile; fileRef = 023F06BC1A869E4C003C6A2A /* carrier_sprint.png */; };
 		023F06C51A869E4C003C6A2A /* carrier_tmobile.png in Resources */ = {isa = PBXBuildFile; fileRef = 023F06BD1A869E4C003C6A2A /* carrier_tmobile.png */; };
 		023F06C61A869E4C003C6A2A /* carrier_verizon.png in Resources */ = {isa = PBXBuildFile; fileRef = 023F06BE1A869E4C003C6A2A /* carrier_verizon.png */; };
+		0250F2B01A86C88200B92382 /* battery_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 0250F2AF1A86C88200B92382 /* battery_empty.png */; };
 		82A7E8F41A85DE3D008A1581 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A7E8F31A85DE3D008A1581 /* main.m */; };
 		82A7E8F71A85DE3D008A1581 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A7E8F61A85DE3D008A1581 /* AppDelegate.m */; };
 		82A7E8FA1A85DE3D008A1581 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A7E8F91A85DE3D008A1581 /* MasterViewController.m */; };
@@ -67,6 +68,7 @@
 		023F06BC1A869E4C003C6A2A /* carrier_sprint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = carrier_sprint.png; sourceTree = "<group>"; };
 		023F06BD1A869E4C003C6A2A /* carrier_tmobile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = carrier_tmobile.png; sourceTree = "<group>"; };
 		023F06BE1A869E4C003C6A2A /* carrier_verizon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = carrier_verizon.png; sourceTree = "<group>"; };
+		0250F2AF1A86C88200B92382 /* battery_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = battery_empty.png; sourceTree = "<group>"; };
 		82A7E8EE1A85DE3D008A1581 /* ScreenShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScreenShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82A7E8F21A85DE3D008A1581 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82A7E8F31A85DE3D008A1581 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 		82A7E91C1A85E716008A1581 /* photos */ = {
 			isa = PBXGroup;
 			children = (
+				0250F2AF1A86C88200B92382 /* battery_empty.png */,
 				023F06B71A869E4C003C6A2A /* carrier_att.png */,
 				023F06B81A869E4C003C6A2A /* carrier_bell.png */,
 				023F06B91A869E4C003C6A2A /* carrier_boost.png */,
@@ -326,6 +329,7 @@
 				82A7E9001A85DE3E008A1581 /* Main.storyboard in Resources */,
 				023F06B21A86947D003C6A2A /* reception_1.png in Resources */,
 				82A7E95A1A86ACD8008A1581 /* fade-iphone.png in Resources */,
+				0250F2B01A86C88200B92382 /* battery_empty.png in Resources */,
 				023F06BF1A869E4C003C6A2A /* carrier_att.png in Resources */,
 				023F06C51A869E4C003C6A2A /* carrier_tmobile.png in Resources */,
 				023F06C61A869E4C003C6A2A /* carrier_verizon.png in Resources */,
