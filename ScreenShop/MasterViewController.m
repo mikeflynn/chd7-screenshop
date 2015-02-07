@@ -22,6 +22,7 @@
 @property NSString *selectedNotificationName;
 
 @property UIView *batteryOverlay;
+@property UIView *receptionOverlay;
 
 //segmented control or slider
 -(void)batteryLevelAdjusted:(id)sender;
@@ -95,7 +96,7 @@
     UISegmentedControl *control = sender;
     
     if(!self.batteryOverlay) {
-        CGRect batteryOverlaySize = CGRectMake(0.0f ,0.0f, self.screenshotImageView.frame.size.width, 20.0f);
+        CGRect batteryOverlaySize = CGRectMake(self.screenshotImageView.frame.size.width - 10.0f, 0.0f, 20.0f, 20.0f);
         self.batteryOverlay = [[UIView alloc] initWithFrame:batteryOverlaySize];
     }
     
@@ -103,7 +104,7 @@
         //slider.value = 0;
         self.batteryLevel = 0;
         
-        self.batteryOverlay.backgroundColor = [UIColor redColor];
+        self.batteryOverlay.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"battery_full"]];
         [self.screenshotImageView addSubview:self.batteryOverlay];
     }
     else if (control.selectedSegmentIndex == 1){//slider.value < 0.75){
@@ -116,7 +117,7 @@
         //slider.value = 1;
         self.batteryLevel = 100;
 
-        self.batteryOverlay.backgroundColor = [UIColor greenColor];
+        self.batteryOverlay.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"battery_full"]];
         [self.screenshotImageView addSubview:self.batteryOverlay];
     }
     
@@ -183,7 +184,16 @@
 }
 -(void)updateReceptionOnScreenshot {
     //use self.receptionLevel for value
+    if(!self.receptionOverlay) {
+        CGRect receptionOverlaySize = CGRectMake(10.0f, 0.0f, 20.0f, 20.0f);
+        self.receptionOverlay = [[UIView alloc] initWithFrame:receptionOverlaySize];
+    }
     
+    if(self.receptionLevel) {
+        NSString *receptionImg = [NSString stringWithFormat:@"reception_%ld", self.receptionLevel];
+        self.receptionOverlay.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:receptionImg]];
+        [self.screenshotImageView addSubview:self.receptionOverlay];
+    }
 }
 -(void)updateTimeOnScreenshot {
     //use self.timeString for the string value

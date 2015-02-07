@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		023F06941A8687B2003C6A2A /* battery_full.png in Resources */ = {isa = PBXBuildFile; fileRef = 023F06931A8687B2003C6A2A /* battery_full.png */; };
+		023F069A1A868D4A003C6A2A /* reception_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 023F06951A868D4A003C6A2A /* reception_1.png */; };
+		023F069B1A868D4A003C6A2A /* reception_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 023F06961A868D4A003C6A2A /* reception_2.png */; };
+		023F069C1A868D4A003C6A2A /* reception_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 023F06971A868D4A003C6A2A /* reception_3.png */; };
+		023F069D1A868D4A003C6A2A /* reception_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 023F06981A868D4A003C6A2A /* reception_4.png */; };
+		023F069E1A868D4A003C6A2A /* reception_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 023F06991A868D4A003C6A2A /* reception_5.png */; };
 		82A7E8F41A85DE3D008A1581 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A7E8F31A85DE3D008A1581 /* main.m */; };
 		82A7E8F71A85DE3D008A1581 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A7E8F61A85DE3D008A1581 /* AppDelegate.m */; };
 		82A7E8FA1A85DE3D008A1581 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A7E8F91A85DE3D008A1581 /* MasterViewController.m */; };
@@ -30,6 +36,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		023F06931A8687B2003C6A2A /* battery_full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = battery_full.png; path = "../../../../Users/mikeflynn/Desktop/iPhone Graphics/battery_full.png"; sourceTree = "<group>"; };
+		023F06951A868D4A003C6A2A /* reception_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = reception_1.png; path = "../../../../Users/mikeflynn/Desktop/iPhone Graphics/reception_1.png"; sourceTree = "<group>"; };
+		023F06961A868D4A003C6A2A /* reception_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = reception_2.png; path = "../../../../Users/mikeflynn/Desktop/iPhone Graphics/reception_2.png"; sourceTree = "<group>"; };
+		023F06971A868D4A003C6A2A /* reception_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = reception_3.png; path = "../../../../Users/mikeflynn/Desktop/iPhone Graphics/reception_3.png"; sourceTree = "<group>"; };
+		023F06981A868D4A003C6A2A /* reception_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = reception_4.png; path = "../../../../Users/mikeflynn/Desktop/iPhone Graphics/reception_4.png"; sourceTree = "<group>"; };
+		023F06991A868D4A003C6A2A /* reception_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = reception_5.png; path = "../../../../Users/mikeflynn/Desktop/iPhone Graphics/reception_5.png"; sourceTree = "<group>"; };
 		82A7E8EE1A85DE3D008A1581 /* ScreenShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScreenShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82A7E8F21A85DE3D008A1581 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82A7E8F31A85DE3D008A1581 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -131,6 +143,12 @@
 		82A7E91C1A85E716008A1581 /* photos */ = {
 			isa = PBXGroup;
 			children = (
+				023F06951A868D4A003C6A2A /* reception_1.png */,
+				023F06961A868D4A003C6A2A /* reception_2.png */,
+				023F06971A868D4A003C6A2A /* reception_3.png */,
+				023F06981A868D4A003C6A2A /* reception_4.png */,
+				023F06991A868D4A003C6A2A /* reception_5.png */,
+				023F06931A8687B2003C6A2A /* battery_full.png */,
 				82A7E91A1A85E70C008A1581 /* fakeiphonemessage.png */,
 			);
 			name = photos;
@@ -227,9 +245,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				82A7E9001A85DE3E008A1581 /* Main.storyboard in Resources */,
+				023F069A1A868D4A003C6A2A /* reception_1.png in Resources */,
 				82A7E9051A85DE3E008A1581 /* LaunchScreen.xib in Resources */,
 				82A7E9231A85F638008A1581 /* ControlCollectionViewCell.xib in Resources */,
+				023F069E1A868D4A003C6A2A /* reception_5.png in Resources */,
+				023F069B1A868D4A003C6A2A /* reception_2.png in Resources */,
+				023F069C1A868D4A003C6A2A /* reception_3.png in Resources */,
 				82A7E9021A85DE3E008A1581 /* Images.xcassets in Resources */,
+				023F06941A8687B2003C6A2A /* battery_full.png in Resources */,
+				023F069D1A868D4A003C6A2A /* reception_4.png in Resources */,
 				82A7E91B1A85E70C008A1581 /* fakeiphonemessage.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -442,6 +466,7 @@
 				82A7E9161A85DE3E008A1581 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		82A7E9171A85DE3E008A1581 /* Build configuration list for PBXNativeTarget "ScreenShopTests" */ = {
 			isa = XCConfigurationList;
@@ -450,6 +475,7 @@
 				82A7E9191A85DE3E008A1581 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
