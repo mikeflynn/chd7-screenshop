@@ -15,6 +15,8 @@
 		82A7E9051A85DE3E008A1581 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A7E9031A85DE3E008A1581 /* LaunchScreen.xib */; };
 		82A7E9111A85DE3E008A1581 /* ScreenShopTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A7E9101A85DE3E008A1581 /* ScreenShopTests.m */; };
 		82A7E91B1A85E70C008A1581 /* fakeiphonemessage.png in Resources */ = {isa = PBXBuildFile; fileRef = 82A7E91A1A85E70C008A1581 /* fakeiphonemessage.png */; };
+		82A7E9221A85F638008A1581 /* ControlCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A7E9201A85F638008A1581 /* ControlCollectionViewCell.m */; };
+		82A7E9231A85F638008A1581 /* ControlCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A7E9211A85F638008A1581 /* ControlCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,9 @@
 		82A7E90F1A85DE3E008A1581 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82A7E9101A85DE3E008A1581 /* ScreenShopTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScreenShopTests.m; sourceTree = "<group>"; };
 		82A7E91A1A85E70C008A1581 /* fakeiphonemessage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fakeiphonemessage.png; path = ../fakeiphonemessage.png; sourceTree = "<group>"; };
+		82A7E91F1A85F638008A1581 /* ControlCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ControlCollectionViewCell.h; path = ../ControlCollectionViewCell.h; sourceTree = "<group>"; };
+		82A7E9201A85F638008A1581 /* ControlCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ControlCollectionViewCell.m; path = ../ControlCollectionViewCell.m; sourceTree = "<group>"; };
+		82A7E9211A85F638008A1581 /* ControlCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ControlCollectionViewCell.xib; path = ../ControlCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +92,9 @@
 				82A7E8F61A85DE3D008A1581 /* AppDelegate.m */,
 				82A7E8F81A85DE3D008A1581 /* MasterViewController.h */,
 				82A7E8F91A85DE3D008A1581 /* MasterViewController.m */,
+				82A7E91F1A85F638008A1581 /* ControlCollectionViewCell.h */,
+				82A7E9201A85F638008A1581 /* ControlCollectionViewCell.m */,
+				82A7E9211A85F638008A1581 /* ControlCollectionViewCell.xib */,
 				82A7E8FE1A85DE3E008A1581 /* Main.storyboard */,
 				82A7E9011A85DE3E008A1581 /* Images.xcassets */,
 				82A7E91C1A85E716008A1581 /* photos */,
@@ -212,6 +220,7 @@
 			files = (
 				82A7E9001A85DE3E008A1581 /* Main.storyboard in Resources */,
 				82A7E9051A85DE3E008A1581 /* LaunchScreen.xib in Resources */,
+				82A7E9231A85F638008A1581 /* ControlCollectionViewCell.xib in Resources */,
 				82A7E9021A85DE3E008A1581 /* Images.xcassets in Resources */,
 				82A7E91B1A85E70C008A1581 /* fakeiphonemessage.png in Resources */,
 			);
@@ -233,6 +242,7 @@
 			files = (
 				82A7E8F71A85DE3D008A1581 /* AppDelegate.m in Sources */,
 				82A7E8FA1A85DE3D008A1581 /* MasterViewController.m in Sources */,
+				82A7E9221A85F638008A1581 /* ControlCollectionViewCell.m in Sources */,
 				82A7E8F41A85DE3D008A1581 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

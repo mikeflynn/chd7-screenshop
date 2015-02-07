@@ -8,13 +8,26 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MasterViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+#define BATTERY_NOT_SET -1
+
+#define BATTERY_ROW 0
+#define RECEPTION_ROW 1
+
+#define COLLECTION_VIEW_TOP_BORDER 20
+#define COLLECTION_VIEW_SIDE_BORDER 20
+
+@interface MasterViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 
 -(IBAction)save:(id)sender;
--(IBAction)sliderAdjusted:(id)sender;
+-(IBAction)batterySliderAdjusted:(id)sender;
 -(IBAction)changePhotoButtonPushed:(id)sender;
 
 @property (nonatomic) IBOutlet UIImageView *screenshotImageView;
+@property (nonatomic) IBOutlet UICollectionView *collectionView;
+
+
+@property (nonatomic) UISegmentedControl *batteryControl;
+@property (nonatomic) UILabel *batteryLabel;
 
 @end
 
