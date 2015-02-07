@@ -20,6 +20,8 @@
 @property NSMutableArray *notificationImages;
 @property NSString *selectedNotificationName;
 
+@property UIView *batteryOverlay;
+
 //segmented control or slider
 -(void)batteryLevelAdjusted:(id)sender;
 -(void)receptionLevelAdjusted:(id)sender;
@@ -90,17 +92,30 @@
     
     UISegmentedControl *control = sender;
     
+    if(!self.batteryOverlay) {
+        CGRect batteryOverlaySize = CGRectMake(0.0f ,0.0f, self.screenshotImageView.frame.size.width, 20.0f);
+        self.batteryOverlay = [[UIView alloc] initWithFrame:batteryOverlaySize];
+    }
+    
     if (control.selectedSegmentIndex == 0) {
         //slider.value = 0;
         self.batteryLevel = 0;
+        
+        self.batteryOverlay.backgroundColor = [UIColor redColor];
+        [self.screenshotImageView addSubview:self.batteryOverlay];
     }
     else if (control.selectedSegmentIndex == 1){//slider.value < 0.75){
         //slider.value = 0.5;
         self.batteryLevel = -1;
+
+        [self.batteryOverlay removeFromSuperview];
     }
     else {
         //slider.value = 1;
         self.batteryLevel = 100;
+
+        self.batteryOverlay.backgroundColor = [UIColor greenColor];
+        [self.screenshotImageView addSubview:self.batteryOverlay];
     }
     
     self.batteryLabel.text = [NSString stringWithFormat:@"Battery: %li%%", self.batteryLevel];
