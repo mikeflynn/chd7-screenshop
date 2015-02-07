@@ -19,7 +19,7 @@
 #define COLLECTION_VIEW_TOP_BORDER 20
 #define COLLECTION_VIEW_SIDE_BORDER 20
 
-@interface MasterViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
+@interface MasterViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 -(IBAction)save:(id)sender;
 -(IBAction)changePhotoButtonPushed:(id)sender;

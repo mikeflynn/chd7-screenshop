@@ -12,6 +12,8 @@
 #import "ActionSheetStringPicker.h"
 #import "ActionSheetDatePicker.h"
 
+#import <Photos/Photos.h>
+
 
 @interface MasterViewController ()
 
@@ -27,6 +29,8 @@
 
 @property UIView *batteryOverlay;
 @property UIView *receptionOverlay;
+
+@property UIImagePickerController *imagePickerController;
 
 //segmented control or slider
 -(void)batteryLevelAdjusted:(id)sender;
@@ -51,6 +55,7 @@
     [super viewDidLoad];
     [self setupCollectionView];
     [self setupNotificationImages];
+    [self setDefaultImage];
     
     self.carriers = @[@"Unchanged",@"AT&T", @"Verizon", @"T-Mobile", @"Sprint", @"Boost", @"Metro PCS"];
 }
@@ -58,6 +63,31 @@
 -(void)setupNotificationImages {
     
     self.notificationImages = [NSMutableArray arrayWithObjects:@"twitterNotification", @"fbNotification", @"gmailNotification", nil];
+}
+
+-(void)setDefaultImage {
+    
+    PHFetchOptions *fetchOptions = [[PHFetchOptions alloc] init];
+    fetchOptions.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES]];
+    PHFetchResult *fetchResult = [PHAsset fetchAssetsWithMediaType:PHAssetMediaTypeImage options:fetchOptions];
+    PHAsset *lastAsset = [fetchResult lastObject];
+    [[PHImageManager defaultManager] requestImageForAsset:lastAsset
+                                               targetSize:self.screenshotImageView.bounds.size
+                                              contentMode:PHImageContentModeAspectFill
+                                                  options:PHImageRequestOptionsVersionCurrent
+                                            resultHandler:^(UIImage *result, NSDictionary *info) {
+                                                
+                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                                    
+                                                    NSLog(@"Retrieved image w = %f h = %f", result.size.width, result.size.height);
+                                                    
+                                                    NSLog(@"my screen w = %f h = %f", [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+                                                    
+                                                    if (result != nil && result.size.height/2 == [UIScreen mainScreen].bounds.size.height && result.size.width/2 == [UIScreen mainScreen].bounds.size.width)
+                                                        self.screenshotImageView.image = result;
+                                                    
+                                                });
+                                            }];
 }
 
 -(void)setupCollectionView {
@@ -83,7 +113,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - IBActions
+#pragma mark - Photos
 
 -(IBAction)save:(id)sender {
     NSLog(@"Save image to photos");
@@ -93,7 +123,27 @@
     
     NSLog(@"Select a new photo from photos");
     
+    self.imagePickerController = [[UIImagePickerController alloc] init];
+    self.imagePickerController.delegate = self;
+    self.imagePickerController.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+
+    [self presentViewController:self.imagePickerController animated:YES completion:nil];
+    
 }
+
+
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    self.screenshotImageView.image = [info objectForKey:UIImagePickerControllerOriginalImage];
+}
+
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - IBActions
 
 -(void)batteryLevelAdjusted:(id)sender;{
     
@@ -397,7 +447,7 @@
 }
 
 
-#pragma mark UIPickerView -
+#pragma mark - UIPickerView
 
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     return 1;
