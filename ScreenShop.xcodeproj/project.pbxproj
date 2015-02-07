@@ -325,6 +325,7 @@
 				023F06C21A869E4C003C6A2A /* carrier_cia.png in Resources */,
 				82A7E9001A85DE3E008A1581 /* Main.storyboard in Resources */,
 				023F06B21A86947D003C6A2A /* reception_1.png in Resources */,
+				82A7E95A1A86ACD8008A1581 /* fade-iphone.png in Resources */,
 				023F06BF1A869E4C003C6A2A /* carrier_att.png in Resources */,
 				023F06C51A869E4C003C6A2A /* carrier_tmobile.png in Resources */,
 				023F06C61A869E4C003C6A2A /* carrier_verizon.png in Resources */,
