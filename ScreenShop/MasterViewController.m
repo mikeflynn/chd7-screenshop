@@ -263,7 +263,7 @@
 
 -(void)updateCarrierOnScreenshot {
     //use self.carrier for the carrier name
-/*
+
     if(!self.carrier) {
         CGRect carrierOverlaySize = CGRectMake(10.0f, 0.0f, 20.0f, 20.0f);
         self.carrierOverlay = [[UIView alloc] initWithFrame:carrierOverlaySize];
@@ -272,11 +272,16 @@
     if([self.carrier isEqual:@"Unchanged"]) {
         [self.carrierOverlay removeFromSuperview];
     } else {
-        NSString *receptionImg = [NSString stringWithFormat:@"reception_%ld", self.carrier];
-        self.carrierOverlay.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:receptionImg]];
+        NSString *pattern = [NSString stringWithFormat:@"[\-&\w]+"];
+        NSRegularExpression *regex = [[NSRegularExpression alloc] initWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:nil];
+        NSString *carrierStr = [regex stringByReplacingMatchesInString:self.carrier options:0 range:NSMakeRange(0, self.carrier.length) withTemplate:@""];
+        
+        NSLog(@"carrier_%@", carrierStr);
+        
+        NSString *carrierImg = [NSString stringWithFormat:@"carrier_%@", carrierStr];
+        self.carrierOverlay.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:carrierImg]];
         [self.screenshotImageView addSubview:self.carrierOverlay];
     }
-*/
 }
 
 -(void)updateReceptionOnScreenshot {
