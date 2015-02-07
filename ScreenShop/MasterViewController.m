@@ -30,6 +30,7 @@
 @property UIView *batteryOverlay;
 @property UIView *receptionOverlay;
 @property UIView *carrierOverlay;
+@property UIView *notificationOverlay;
 
 @property UIImagePickerController *imagePickerController;
 
@@ -287,7 +288,7 @@
 }
 -(void)updateBatteryLevelOnScreenshot {
     if(!self.batteryOverlay) {
-        CGRect batteryOverlaySize = CGRectMake(self.screenshotImageView.frame.size.width - 5.0f, 0.0f, 55.0f, 20.0f);
+        CGRect batteryOverlaySize = CGRectMake(self.screenshotImageView.frame.size.width - 58.0f, 0.0f, 55.0f, 20.0f);
         self.batteryOverlay = [[UIView alloc] initWithFrame:batteryOverlaySize];
     }
     
@@ -330,7 +331,7 @@
 -(void)updateReceptionOnScreenshot {
     //use self.receptionLevel for value
     if(!self.receptionOverlay) {
-        CGRect receptionOverlaySize = CGRectMake(0.0f, 0.0f, 85.0f, 20.0f);
+        CGRect receptionOverlaySize = CGRectMake(0.5f, 0.0f, 85.0f, 20.0f);
         self.receptionOverlay = [[UIView alloc] initWithFrame:receptionOverlaySize];
     }
     
@@ -350,9 +351,23 @@
 }
 -(void)addNewNotificationToScreenshot{
     //self.selectedNotificationName is the image name
+    
+    if(!self.notificationOverlay) {
+        CGRect notificationOverlaySize = CGRectMake(self.screenshotImageView.frame.size.width, 20.0f, 85.0f, 20.0f);
+        self.notificationOverlay = [[UIView alloc] initWithFrame:notificationOverlaySize];
+    }
+    
+    // self.receptionOverlay.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:self.selectedNotificationName]];
+    self.notificationOverlay.backgroundColor = [UIColor redColor];
+    [self.screenshotImageView addSubview:self.notificationOverlay];
+    
 }
 -(void)removeNotificationFromScreenshot{
     //self.selectedNotificationName is the current image name
+
+    if(self.notificationOverlay) {
+        [self.notificationOverlay removeFromSuperview];
+    }
 }
 
 
