@@ -124,7 +124,39 @@
 #pragma mark - Photos
 
 -(IBAction)save:(id)sender {
+    
     NSLog(@"Save image to photos");
+    
+    UIGraphicsBeginImageContextWithOptions(self.screenshotImageView.bounds.size, self.screenshotImageView.opaque, 0.0);
+    [self.screenshotImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    NSData* imdata = UIImagePNGRepresentation (viewImage); // get PNG representation
+    UIImage* im2 = [UIImage imageWithData:imdata]; // wrap UIImage around PNG representation
+    
+    UIImageWriteToSavedPhotosAlbum(im2, self, // send the message to 'self' when calling the callback
+                                   @selector(thisImage:hasBeenSavedInPhotoAlbumWithError:usingContextInfo:), // the selector to tell the method to call on completion
+                                   NULL); // save to photo album
+    
+}
+
+- (void)thisImage:(UIImage *)image hasBeenSavedInPhotoAlbumWithError:(NSError *)error usingContextInfo:(void*)ctxInfo {
+    
+    UIAlertView *alert;
+    
+    if (error) {
+        NSString *errorString = [NSString stringWithFormat:@"Unable to save picture in your saved photos. Your privacy settings may be preventing this. Try opening the Settings app and selecting \"Privacy\", then \"Photos\", and making sure ScreenShop has permission to access your photo library.\"\nFull error:\n%@.", [error description]];
+        alert = [[UIAlertView alloc] initWithTitle:@"Error" message:errorString delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    } else {
+        
+            alert = [[UIAlertView alloc] initWithTitle:@"Image saved!" message:@"\nYour image has been saved as a picture in your saved photos.\n\nShare it with your friends safe from ridicule."delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+
+        
+    }
+    
+    [alert show];
+    
 }
 
 -(IBAction)changePhotoButtonPushed:(id)sender{
