@@ -272,7 +272,7 @@
     if([self.carrier isEqual:@"Unchanged"]) {
         [self.carrierOverlay removeFromSuperview];
     } else {
-        NSString *pattern = [NSString stringWithFormat:@"[\-&\w]+"];
+        NSString *pattern = [NSString stringWithFormat:@"[\\-&\\s]+"];
         NSRegularExpression *regex = [[NSRegularExpression alloc] initWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:nil];
         NSString *carrierStr = [regex stringByReplacingMatchesInString:self.carrier options:0 range:NSMakeRange(0, self.carrier.length) withTemplate:@""];
         
