@@ -27,7 +27,7 @@
 @property NSMutableArray *notificationImages;
 @property NSString *selectedNotificationName;
 
-@property UIView *batteryOverlay;
+
 @property UIView *receptionOverlay;
 @property UIView *carrierOverlay;
 @property UIView *notificationOverlay;
@@ -60,15 +60,19 @@
     [self setDefaultImage];
     
     self.navigationController.navigationBarHidden = YES;
-    
+    self.batteryLevel = BATTERY_NOT_SET;
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     
+    [self.screenshotImageView addSubview:self.batteryOverlay];
+    
     self.carriers = @[@"Unchanged",@"AT&T", @"Verizon", @"T-Mobile", @"Sprint", @"Boost", @"Metro PCS"];
 }
+
 -(BOOL)prefersStatusBarHidden {
     return YES;
 }
+
 -(void)setupNotificationImages {
     
     self.notificationImages = [NSMutableArray arrayWithObjects:@"twitterNotification", @"fbNotification", @"gmailNotification", nil];
@@ -284,22 +288,20 @@
     [self removeNotificationFromScreenshot];
     
 }
+
 -(void)updateBatteryLevelOnScreenshot {
-    if(!self.batteryOverlay) {
-        CGRect batteryOverlaySize = CGRectMake(self.screenshotImageView.frame.size.width - 58.0f, 0.0f, 55.0f, 20.0f);
-        self.batteryOverlay = [[UIView alloc] initWithFrame:batteryOverlaySize];
-    }
     
     if(self.batteryLevel == 0) {
-        //self.batteryOverlay.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"battery_full"]];
+        self.batteryOverlay.hidden = NO;
         self.batteryOverlay.backgroundColor = [UIColor redColor];
-        [self.screenshotImageView addSubview:self.batteryOverlay];
+        self.batteryOverlay.image = nil;
     } else if(self.batteryLevel == 100) {
         self.batteryOverlay.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"battery_full"]];
-        [self.screenshotImageView addSubview:self.batteryOverlay];
+        self.batteryOverlay.hidden = NO;
     } else {
-        [self.batteryOverlay removeFromSuperview];
+        self.batteryOverlay.hidden = YES;
     }
+    
 }
 
 -(void)updateCarrierOnScreenshot {
@@ -511,6 +513,9 @@
     
     [ActionSheetStringPicker showPickerWithTitle:@"Select battery level" rows:@[@"Unchanged", @"Empty", @"Full"]initialSelection:selectedIndex doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
         
+        if (selectedIndex != 0 || self.batteryLevel != BATTERY_NOT_SET) {
+            
+        
         if (selectedIndex == 0)
             self.batteryLevel = BATTERY_NOT_SET;
         else if (selectedIndex == 1)
@@ -521,6 +526,7 @@
         NSLog(@"New battery level: %li", self.batteryLevel);
         
         [self updateBatteryLevelOnScreenshot];
+        }
     } cancelBlock:^(ActionSheetStringPicker *picker) {
         
     } origin:self.carrierButton];
