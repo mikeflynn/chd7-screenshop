@@ -41,6 +41,7 @@
 
 
 @property IBOutlet UIImageView *batteryOverlay;
+@property IBOutlet UIImageView *receptionOverlay;
 
 @property (nonatomic) IBOutlet UIImageView *screenshotImageView;
 @property (nonatomic) IBOutlet UICollectionView *collectionView;

@@ -28,7 +28,6 @@
 @property NSString *selectedNotificationName;
 
 
-@property UIView *receptionOverlay;
 @property UIView *carrierOverlay;
 @property UIView *notificationOverlay;
 
@@ -65,6 +64,7 @@
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     
     [self.screenshotImageView addSubview:self.batteryOverlay];
+    [self.screenshotImageView addSubview:self.receptionOverlay];
     
     self.carriers = @[@"Unchanged",@"AT&T", @"Verizon", @"T-Mobile", @"Sprint", @"Boost", @"Metro PCS"];
 }
@@ -330,19 +330,14 @@
 
 -(void)updateReceptionOnScreenshot {
     //use self.receptionLevel for value
-    if(!self.receptionOverlay) {
-        CGRect receptionOverlaySize = CGRectMake(0.5f, 0.0f, 85.0f, 20.0f);
-        self.receptionOverlay = [[UIView alloc] initWithFrame:receptionOverlaySize];
-    }
-    
     if(self.receptionLevel == -1) {
-        [self.receptionOverlay removeFromSuperview];
+        self.receptionOverlay.hidden = YES;
     } else {
         NSString *receptionImg = [NSString stringWithFormat:@"reception_%ld", self.receptionLevel];
-        NSLog(@"Reception Img: %@", receptionImg);
+        
         self.receptionOverlay.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:receptionImg]];
-        //self.receptionOverlay.backgroundColor = [UIColor redColor];
-        [self.screenshotImageView addSubview:self.receptionOverlay];
+        self.receptionOverlay.hidden = NO;
+        self.receptionOverlay.image = nil;
     }
 }
 -(void)updateTimeOnScreenshot {
