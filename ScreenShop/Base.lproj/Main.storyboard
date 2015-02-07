@@ -194,6 +194,9 @@
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="battery_full.png" translatesAutoresizingMaskIntoConstraints="NO" id="H8V-PD-yZJ">
                                 <rect key="frame" x="335" y="44" width="33" height="12"/>
                             </imageView>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="reception_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="Iks-wP-TzX">
+                                <rect key="frame" x="1" y="42" width="51" height="14"/>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nho-Aw-Bb1">
                                 <rect key="frame" x="0.0" y="320" width="375" height="347"/>
                                 <subviews>
@@ -326,8 +329,8 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="reception_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="Iks-wP-TzX">
-                                <rect key="frame" x="1" y="42" width="51" height="17"/>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gmailNotification.png" translatesAutoresizingMaskIntoConstraints="NO" id="epl-0N-JCs">
+                                <rect key="frame" x="0.0" y="40" width="375" height="76"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -391,6 +394,7 @@
                         <outlet property="carrierButton" destination="uet-z6-63l" id="eNq-Px-QMN"/>
                         <outlet property="collectionView" destination="yjN-fg-hTM" id="oIH-gQ-cen"/>
                         <outlet property="notificationButton" destination="27l-NV-7cA" id="sw6-3X-KCx"/>
+                        <outlet property="notificationOverlay" destination="epl-0N-JCs" id="STr-Og-Aps"/>
                         <outlet property="receptionButton" destination="nD1-06-lha" id="Pkj-MJ-EDG"/>
                         <outlet property="receptionOverlay" destination="Iks-wP-TzX" id="kgD-3U-zIK"/>
                         <outlet property="screenshotImageView" destination="96s-ns-DS3" id="5tD-8k-ClW"/>
@@ -413,6 +417,7 @@
         <image name="battery_full.png" width="54" height="21"/>
         <image name="fade-iphone.png" width="750" height="184"/>
         <image name="fakeiphonemessage.png" width="766" height="1272"/>
+        <image name="gmailNotification.png" width="750" height="136"/>
         <image name="reception_1.png" width="50" height="15"/>
     </resources>
 </document>

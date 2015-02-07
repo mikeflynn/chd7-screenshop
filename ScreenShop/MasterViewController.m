@@ -29,7 +29,6 @@
 
 
 @property UIView *carrierOverlay;
-@property UIView *notificationOverlay;
 
 @property UIImagePickerController *imagePickerController;
 
@@ -65,6 +64,7 @@
     
     [self.screenshotImageView addSubview:self.batteryOverlay];
     [self.screenshotImageView addSubview:self.receptionOverlay];
+    [self.screenshotImageView addSubview:self.notificationOverlay];
     
     self.carriers = @[@"Unchanged",@"AT&T", @"Verizon", @"T-Mobile", @"Sprint", @"Boost", @"Metro PCS"];
 }
@@ -347,22 +347,15 @@
 -(void)addNewNotificationToScreenshot{
     //self.selectedNotificationName is the image name
     
-    if(!self.notificationOverlay) {
-        CGRect notificationOverlaySize = CGRectMake(0.0f, 0.0f, self.screenshotImageView.frame.size.width, 60.0f);
-        self.notificationOverlay = [[UIView alloc] initWithFrame:notificationOverlaySize];
-    }
-    
-    // self.receptionOverlay.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:self.selectedNotificationName]];
-    self.notificationOverlay.backgroundColor = [UIColor redColor];
-    [self.screenshotImageView addSubview:self.notificationOverlay];
+    self.notificationOverlay.hidden = NO;
+    self.notificationOverlay.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:self.selectedNotificationName]];
+    self.notificationOverlay.image = nil;
     
 }
 -(void)removeNotificationFromScreenshot{
     //self.selectedNotificationName is the current image name
 
-    if(self.notificationOverlay) {
-        [self.notificationOverlay removeFromSuperview];
-    }
+    self.notificationOverlay.hidden = YES;
 }
 
 
