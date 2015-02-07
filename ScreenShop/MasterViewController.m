@@ -109,7 +109,7 @@
         self.batteryLevel = 100;
     }
     
-    self.batteryLabel.text = [NSString stringWithFormat:@"Battery: %li%%", self.batteryLevel];
+    NSLog(@"Battery: %li%%", self.batteryLevel);
     [self updateBatteryLevelOnScreenshot];
 }
 
@@ -129,6 +129,8 @@
     
     self.carrier = newCarrier;
     
+    NSLog(@"New carrier: %@", newCarrier);
+    
     [self updateCarrierOnScreenshot];
     
 }
@@ -141,12 +143,20 @@
     
     self.timeString = [myDateFormatter stringFromDate:newDate];
     
+    NSLog(@"New time string: %@", self.timeString);
+    
     [self updateTimeOnScreenshot];
     
 }
 -(IBAction)randomNotificationAdded:(id)sender {
     
-    int randomIndex = (int)arc4random_uniform(self.notificationImages.count);
+    
+    NSString *prevnotification = self.selectedNotificationName;
+    
+    int randomIndex = (int)arc4random_uniform(100);
+    NSLog(@"Random index: %i", randomIndex);
+    
+    randomIndex = randomIndex % self.notificationImages.count;
     
     if (randomIndex == self.notificationImages.count) {
         randomIndex--;
@@ -155,6 +165,12 @@
     self.selectedNotificationName = (NSString *)[self.notificationImages objectAtIndex:randomIndex];
     [self.notificationImages removeObjectAtIndex:randomIndex];
     
+    if (prevnotification) {
+        [self.notificationImages addObject:prevnotification];
+    }
+    
+    NSLog(@"Selected notification: %@", self.selectedNotificationName);
+    
     [self addNewNotificationToScreenshot];
     
 }
@@ -162,6 +178,14 @@
     
     [self.notificationImages addObject:self.selectedNotificationName];
     self.selectedNotificationName = nil;
+    
+    if (self.selectedNotificationName) {
+        
+        NSLog(@"STILL selected notification: %@", self.selectedNotificationName);
+    }
+    else {
+        NSLog(@"Removed notification");
+    }
     
     [self removeNotificationFromScreenshot];
     
@@ -281,7 +305,9 @@
     }
     
     [ActionSheetStringPicker showPickerWithTitle:@"Select carrier" rows:self.carriers initialSelection:selectedIndex doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-        self.carrier = [self.carriers objectAtIndex:selectedIndex];
+
+        self.carrier = (selectedIndex == 0) ? nil : [self.carriers objectAtIndex:selectedIndex];
+        NSLog(@"new carrier: %@", self.carrier);
         [self updateCarrierOnScreenshot];
     } cancelBlock:^(ActionSheetStringPicker *picker) {
         
@@ -293,6 +319,8 @@
     
     [ActionSheetStringPicker showPickerWithTitle:@"Select reception level" rows:@[@"No bars", @"1 bar", @"2 bars", @"3 bars", @"Full bars"] initialSelection:self.receptionLevel doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
         self.receptionLevel = selectedIndex;
+        NSLog(@"new reception level: %li", self.receptionLevel);
+        
         [self updateReceptionOnScreenshot];
     } cancelBlock:^(ActionSheetStringPicker *picker) {
         
@@ -333,6 +361,8 @@
             self.batteryLevel = 0;
         else
             self.batteryLevel = 100;
+        
+        NSLog(@"New battery level: %li", self.batteryLevel);
         
         [self updateBatteryLevelOnScreenshot];
     } cancelBlock:^(ActionSheetStringPicker *picker) {
