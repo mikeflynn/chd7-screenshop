@@ -16,6 +16,7 @@
 
 @property NSString *timeString;
 @property NSString *carrier;
+@property NSArray *carriers;
 
 @property NSMutableArray *notificationImages;
 @property NSString *selectedNotificationName;
@@ -28,13 +29,12 @@
 -(void)carrierAdjusted:(id)sender;
 -(void)timeUpdated:(id)sender;
 
-//buttons
--(void)randomNotificationAdded;
--(void)randomNotificationRemoved;
 
 @end
 
 @implementation MasterViewController
+
+
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -44,6 +44,8 @@
     [super viewDidLoad];
     [self setupCollectionView];
     [self setupNotificationImages];
+    
+    self.carriers = @[@"Unchanged",@"AT&T", @"Verizon", @"T-Mobile", @"Sprint", @"Boost", @"Metro PCS"];
 }
 
 -(void)setupNotificationImages {
@@ -138,7 +140,7 @@
     [self updateTimeOnScreenshot];
     
 }
--(void)randomNotificationAdded {
+-(IBAction)randomNotificationAdded:(id)sender {
     
     int randomIndex = (int)arc4random_uniform(self.notificationImages.count);
     
@@ -149,10 +151,10 @@
     self.selectedNotificationName = (NSString *)[self.notificationImages objectAtIndex:randomIndex];
     [self.notificationImages removeObjectAtIndex:randomIndex];
     
-    [self randomNotificationAdded];
+    [self addNewNotificationToScreenshot];
     
 }
--(void)randomNotificationRemoved {
+-(IBAction)randomNotificationRemoved:(id)sender {
     
     [self.notificationImages addObject:self.selectedNotificationName];
     self.selectedNotificationName = nil;
@@ -186,7 +188,7 @@
     return 1;
 }
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 2;
+    return 5;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -200,6 +202,16 @@
             break;
         case RECEPTION_ROW:
             cell = (UICollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"receptionCell" forIndexPath:indexPath];
+            break;
+        case NOTIFICATION_ROW:
+            cell = (UICollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"notificationCell" forIndexPath:indexPath];
+            break;
+        case TIME_ROW:
+            cell = (UICollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"timeCell" forIndexPath:indexPath];
+            break;
+        case CARRIER_ROW:
+            cell = (UICollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"carrierCell" forIndexPath:indexPath];
+            break;
         default:
             break;
     }
@@ -215,7 +227,7 @@
     
     if (self.receptionControl == nil){
         self.receptionControl = batteryControl;
-        [self.receptionControl addTarget:self action:@selector(batteryLevelAdjusted:) forControlEvents:UIControlEventValueChanged];
+        [self.receptionControl addTarget:self action:@selector(receptionLevelAdjusted:) forControlEvents:UIControlEventValueChanged];
     }
     else if(self.receptionControl != batteryControl) {
         self.receptionControl = batteryControl;
@@ -245,5 +257,26 @@
     else {
         self.batteryLabel.text = [NSString stringWithFormat:@"Battery: %li%%", self.batteryLevel];
     }*/
+}
+
+#pragma mark UIPickerView -
+
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
+}
+
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    
+    return self.carriers.count;
+}
+-(NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    
+    return [[NSAttributedString alloc] initWithString:[self.carriers objectAtIndex:row]];
+}
+
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    
+    self.carrier = [self.carriers objectAtIndex:row];
+    [self updateCarrierOnScreenshot];
 }
 @end
