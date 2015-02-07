@@ -25,6 +25,9 @@
 @property NSMutableArray *notificationImages;
 @property NSString *selectedNotificationName;
 
+@property UIView *batteryOverlay;
+@property UIView *receptionOverlay;
+
 //segmented control or slider
 -(void)batteryLevelAdjusted:(id)sender;
 -(void)receptionLevelAdjusted:(id)sender;
@@ -96,17 +99,30 @@
     
     UISegmentedControl *control = sender;
     
+    if(!self.batteryOverlay) {
+        CGRect batteryOverlaySize = CGRectMake(self.screenshotImageView.frame.size.width - 10.0f, 0.0f, 20.0f, 20.0f);
+        self.batteryOverlay = [[UIView alloc] initWithFrame:batteryOverlaySize];
+    }
+    
     if (control.selectedSegmentIndex == 0) {
         //slider.value = 0;
         self.batteryLevel = 0;
+        
+        self.batteryOverlay.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"battery_full"]];
+        [self.screenshotImageView addSubview:self.batteryOverlay];
     }
     else if (control.selectedSegmentIndex == 1){//slider.value < 0.75){
         //slider.value = 0.5;
         self.batteryLevel = -1;
+
+        [self.batteryOverlay removeFromSuperview];
     }
     else {
         //slider.value = 1;
         self.batteryLevel = 100;
+
+        self.batteryOverlay.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"battery_full"]];
+        [self.screenshotImageView addSubview:self.batteryOverlay];
     }
     
     NSLog(@"Battery: %li%%", self.batteryLevel);
@@ -199,7 +215,16 @@
 }
 -(void)updateReceptionOnScreenshot {
     //use self.receptionLevel for value
+    if(!self.receptionOverlay) {
+        CGRect receptionOverlaySize = CGRectMake(10.0f, 0.0f, 20.0f, 20.0f);
+        self.receptionOverlay = [[UIView alloc] initWithFrame:receptionOverlaySize];
+    }
     
+    if(self.receptionLevel) {
+        NSString *receptionImg = [NSString stringWithFormat:@"reception_%ld", self.receptionLevel];
+        self.receptionOverlay.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:receptionImg]];
+        [self.screenshotImageView addSubview:self.receptionOverlay];
+    }
 }
 -(void)updateTimeOnScreenshot {
     //use self.timeString for the string value
