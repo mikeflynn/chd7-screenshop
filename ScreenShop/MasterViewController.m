@@ -111,13 +111,19 @@
     
     self.receptionLevel = ((UISegmentedControl *)sender).selectedSegmentIndex;
     
+    NSLog(@"Reception level: %li", self.receptionLevel);
+    
     //adjust the screenshot for the new reception value
+    
+    [self updateReceptionOnScreenshot];
     
 }
 
 -(void)carrierAdjusted:(NSString *)newCarrier {
     
     self.carrier = newCarrier;
+    
+    [self updateCarrierOnScreenshot];
     
 }
 
@@ -128,6 +134,8 @@
     myDateFormatter.dateStyle = NSDateFormatterNoStyle;
     
     self.timeString = [myDateFormatter stringFromDate:newDate];
+    
+    [self updateTimeOnScreenshot];
     
 }
 -(void)randomNotificationAdded {
@@ -141,7 +149,7 @@
     self.selectedNotificationName = (NSString *)[self.notificationImages objectAtIndex:randomIndex];
     [self.notificationImages removeObjectAtIndex:randomIndex];
     
-    //code to add notification to screenshot goes here
+    [self randomNotificationAdded];
     
 }
 -(void)randomNotificationRemoved {
@@ -149,8 +157,7 @@
     [self.notificationImages addObject:self.selectedNotificationName];
     self.selectedNotificationName = nil;
     
-    //code to remove notification from screenshot goes here
-    
+    [self removeNotificationFromScreenshot];
     
 }
 
