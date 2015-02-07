@@ -189,30 +189,17 @@
     
     UISegmentedControl *control = sender;
     
-    if(!self.batteryOverlay) {
-        CGRect batteryOverlaySize = CGRectMake(self.screenshotImageView.frame.size.width - 10.0f, 0.0f, 20.0f, 20.0f);
-        self.batteryOverlay = [[UIView alloc] initWithFrame:batteryOverlaySize];
-    }
-    
     if (control.selectedSegmentIndex == 0) {
         //slider.value = 0;
         self.batteryLevel = 0;
-        
-        self.batteryOverlay.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"battery_full"]];
-        [self.screenshotImageView addSubview:self.batteryOverlay];
     }
     else if (control.selectedSegmentIndex == 1){//slider.value < 0.75){
         //slider.value = 0.5;
         self.batteryLevel = -1;
-
-        [self.batteryOverlay removeFromSuperview];
     }
     else {
         //slider.value = 1;
         self.batteryLevel = 100;
-
-        self.batteryOverlay.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"battery_full"]];
-        [self.screenshotImageView addSubview:self.batteryOverlay];
     }
     
     NSLog(@"Battery: %li%%", self.batteryLevel);
@@ -297,21 +284,43 @@
     
 }
 -(void)updateBatteryLevelOnScreenshot {
+    if(!self.batteryOverlay) {
+        CGRect batteryOverlaySize = CGRectMake(self.screenshotImageView.frame.size.width - 5.0f, 0.0f, 55.0f, 20.0f);
+        self.batteryOverlay = [[UIView alloc] initWithFrame:batteryOverlaySize];
+    }
     
+    if(self.batteryLevel == 0) {
+        //self.batteryOverlay.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"battery_full"]];
+        self.batteryOverlay.backgroundColor = [UIColor redColor];
+        [self.screenshotImageView addSubview:self.batteryOverlay];
+    } else if(self.batteryLevel == 100) {
+        self.batteryOverlay.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"battery_full"]];
+        [self.screenshotImageView addSubview:self.batteryOverlay];
+    } else {
+        [self.batteryOverlay removeFromSuperview];
+    }
 }
 
 -(void)updateCarrierOnScreenshot {
     //use self.carrier for the carrier name
+
     if(!self.carrier) {
-        CGRect carrierOverlaySize = CGRectMake(10.0f, 0.0f, 20.0f, 20.0f);
+        CGRect carrierOverlaySize = CGRectMake(20.0f, 20.0f, 100.0f, 20.0f);
         self.carrierOverlay = [[UIView alloc] initWithFrame:carrierOverlaySize];
     }
     
     if([self.carrier isEqual:@"Unchanged"]) {
         [self.carrierOverlay removeFromSuperview];
     } else {
-        NSString *receptionImg = [NSString stringWithFormat:@"reception_%ld", self.carrier];
-        self.carrierOverlay.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:receptionImg]];
+        NSString *pattern = [NSString stringWithFormat:@"[\\-&\\s]+"];
+        NSRegularExpression *regex = [[NSRegularExpression alloc] initWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:nil];
+        NSString *carrierStr = [regex stringByReplacingMatchesInString:self.carrier options:0 range:NSMakeRange(0, self.carrier.length) withTemplate:@""];
+        carrierStr = [carrierStr lowercaseString];
+        
+        NSString *carrierImg = [NSString stringWithFormat:@"carrier_%@", carrierStr];
+        NSLog(@"Carrier Img: %@", carrierImg);
+        //self.carrierOverlay.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:carrierImg]];
+        self.carrierOverlay.backgroundColor = [UIColor redColor];
         [self.screenshotImageView addSubview:self.carrierOverlay];
     }
 }
@@ -319,7 +328,7 @@
 -(void)updateReceptionOnScreenshot {
     //use self.receptionLevel for value
     if(!self.receptionOverlay) {
-        CGRect receptionOverlaySize = CGRectMake(10.0f, 0.0f, 20.0f, 20.0f);
+        CGRect receptionOverlaySize = CGRectMake(0.0f, 0.0f, 85.0f, 20.0f);
         self.receptionOverlay = [[UIView alloc] initWithFrame:receptionOverlaySize];
     }
     
@@ -327,7 +336,9 @@
         [self.receptionOverlay removeFromSuperview];
     } else {
         NSString *receptionImg = [NSString stringWithFormat:@"reception_%ld", self.receptionLevel];
+        NSLog(@"Reception Img: %@", receptionImg);
         self.receptionOverlay.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:receptionImg]];
+        //self.receptionOverlay.backgroundColor = [UIColor redColor];
         [self.screenshotImageView addSubview:self.receptionOverlay];
     }
 }
