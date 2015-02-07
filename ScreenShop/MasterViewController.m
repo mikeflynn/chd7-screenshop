@@ -12,8 +12,25 @@
 @interface MasterViewController ()
 
 @property NSInteger batteryLevel;
+@property NSInteger receptionLevel;
 
-@property (nonatomic) NSArray *controlArray;
+@property NSString *timeString;
+@property NSString *carrier;
+
+@property NSMutableArray *notificationImages;
+@property NSString *selectedNotificationName;
+
+//segmented control or slider
+-(void)batteryLevelAdjusted:(id)sender;
+-(void)receptionLevelAdjusted:(id)sender;
+
+//Selection wheels
+-(void)carrierAdjusted:(id)sender;
+-(void)timeUpdated:(id)sender;
+
+//buttons
+-(void)randomNotificationAdded;
+-(void)randomNotificationRemoved;
 
 @end
 
@@ -26,6 +43,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupCollectionView];
+    [self setupNotificationImages];
+}
+
+-(void)setupNotificationImages {
+    
+    self.notificationImages = [NSMutableArray arrayWithObjects:@"twitterNotification", @"fbNotification", @"gmailNotification", nil];
 }
 
 -(void)setupCollectionView {
@@ -63,7 +86,7 @@
     
 }
 
--(void)batterySliderAdjusted:(id)sender {
+-(void)batteryLevelAdjusted:(id)sender;{
     
     UISegmentedControl *control = sender;
     
@@ -83,6 +106,72 @@
     self.batteryLabel.text = [NSString stringWithFormat:@"Battery: %li%%", self.batteryLevel];
     
 }
+-(void)receptionLevelAdjusted:(id)sender {
+    
+    self.receptionLevel = ((UISegmentedControl *)sender).selectedSegmentIndex;
+    
+    //adjust the screenshot for the new reception value
+    
+}
+
+-(void)carrierAdjusted:(NSString *)newCarrier {
+    
+    self.carrier = newCarrier;
+    
+}
+
+-(void)timeUpdated:(NSDate *)newDate {
+    
+    NSDateFormatter *myDateFormatter = [[NSDateFormatter alloc] init];
+    myDateFormatter.timeStyle = NSDateFormatterShortStyle;
+    myDateFormatter.dateStyle = NSDateFormatterNoStyle;
+    
+    self.timeString = [myDateFormatter stringFromDate:newDate];
+    
+}
+-(void)randomNotificationAdded {
+    
+    int randomIndex = (int)arc4random_uniform(self.notificationImages.count);
+    
+    if (randomIndex == self.notificationImages.count) {
+        randomIndex--;
+    }
+    
+    self.selectedNotificationName = (NSString *)[self.notificationImages objectAtIndex:randomIndex];
+    [self.notificationImages removeObjectAtIndex:randomIndex];
+    
+    //code to add notification to screenshot goes here
+    
+}
+-(void)randomNotificationRemoved {
+    
+    [self.notificationImages addObject:self.selectedNotificationName];
+    self.selectedNotificationName = nil;
+    
+    //code to remove notification from screenshot goes here
+    
+    
+}
+
+-(void)updateCarrierOnScreenshot {
+    //use self.carrier for the carrier name
+}
+-(void)updateReceptionOnScreenshot {
+    //use self.receptionLevel for value
+    
+}
+-(void)updateTimeOnScreenshot {
+    //use self.timeString for the string value
+    
+}
+-(void)addNewNotificationToScreenshot{
+    //self.selectedNotificationName is the image name
+}
+-(void)removeNotificationFromScreenshot{
+    //self.selectedNotificationName is the current image name
+}
+
+
 #pragma mark - Table View
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
@@ -111,6 +200,21 @@
     return cell;
 }
 
+-(void)configureReceptionCell:(UICollectionViewCell *)cell {
+    
+    
+    UISegmentedControl *batteryControl = (UISegmentedControl *)[cell viewWithTag:2];
+    
+    if (self.receptionControl == nil){
+        self.receptionControl = batteryControl;
+        [self.receptionControl addTarget:self action:@selector(batteryLevelAdjusted:) forControlEvents:UIControlEventValueChanged];
+    }
+    else if(self.receptionControl != batteryControl) {
+        self.receptionControl = batteryControl;
+    }
+ 
+}
+
 -(void)configureBatteryCell:(UICollectionViewCell *)cell {
     
     
@@ -118,12 +222,13 @@
     
     if (self.batteryControl == nil){
         self.batteryControl = batteryControl;
-        [self.batteryControl addTarget:self action:@selector(batterySliderAdjusted:) forControlEvents:UIControlEventValueChanged];
+        [self.batteryControl addTarget:self action:@selector(batteryLevelAdjusted:) forControlEvents:UIControlEventValueChanged];
     }
     else if(self.batteryControl != batteryControl) {
         self.batteryControl = batteryControl;
     }
     
+    /*
     self.batteryLabel = (UILabel *)[cell viewWithTag:1];
     
     if (self.batteryLevel == BATTERY_NOT_SET) {
@@ -131,6 +236,6 @@
     }
     else {
         self.batteryLabel.text = [NSString stringWithFormat:@"Battery: %li%%", self.batteryLevel];
-    }
+    }*/
 }
 @end

@@ -19,15 +19,16 @@
 @interface MasterViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 
 -(IBAction)save:(id)sender;
--(IBAction)batterySliderAdjusted:(id)sender;
 -(IBAction)changePhotoButtonPushed:(id)sender;
 
 @property (nonatomic) IBOutlet UIImageView *screenshotImageView;
 @property (nonatomic) IBOutlet UICollectionView *collectionView;
 
-
 @property (nonatomic) UISegmentedControl *batteryControl;
 @property (nonatomic) UILabel *batteryLabel;
+
+@property (nonatomic) UILabel *receptionLabel;
+@property (nonatomic) UISegmentedControl *receptionControl;
 
 @end
 

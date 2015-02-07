@@ -104,8 +104,18 @@
                                             <rect key="frame" x="0.0" y="0.0" width="508" height="213"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Reception" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aaX-yQ-n8C">
-                                                    <rect key="frame" x="220" y="45" width="79" height="21"/>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="n2Z-pB-d2U">
+                                                    <rect key="frame" x="137" y="105" width="234" height="29"/>
+                                                    <segments>
+                                                        <segment title="None"/>
+                                                        <segment title="1"/>
+                                                        <segment title="2"/>
+                                                        <segment title="3"/>
+                                                        <segment title="4"/>
+                                                    </segments>
+                                                </segmentedControl>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Reception bars" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aaX-yQ-n8C">
+                                                    <rect key="frame" x="196" y="49" width="117" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="56" id="Ncu-Dl-D7o"/>
                                                         <constraint firstAttribute="height" constant="21" id="fTw-6d-2us"/>
@@ -114,14 +124,6 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="n2Z-pB-d2U">
-                                                    <rect key="frame" x="100" y="105" width="307" height="29"/>
-                                                    <segments>
-                                                        <segment title="Empty"/>
-                                                        <segment title="Unchanged"/>
-                                                        <segment title="Full"/>
-                                                    </segments>
-                                                </segmentedControl>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
