@@ -31,6 +31,7 @@
 		82A7E9511A869B7F008A1581 /* ActionSheetStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A7E94B1A869B7F008A1581 /* ActionSheetStringPicker.m */; };
 		82A7E9541A869B8B008A1581 /* SWActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A7E9531A869B8B008A1581 /* SWActionSheet.m */; };
 		82A7E9581A869BBA008A1581 /* DistancePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A7E9571A869BBA008A1581 /* DistancePickerView.m */; };
+		82A7E95A1A86ACD8008A1581 /* fade-iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 82A7E9591A86ACD8008A1581 /* fade-iphone.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,7 @@
 		82A7E9531A869B8B008A1581 /* SWActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWActionSheet.m; sourceTree = "<group>"; };
 		82A7E9561A869BBA008A1581 /* DistancePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistancePickerView.h; sourceTree = "<group>"; };
 		82A7E9571A869BBA008A1581 /* DistancePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistancePickerView.m; sourceTree = "<group>"; };
+		82A7E9591A86ACD8008A1581 /* fade-iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fade-iphone.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 				82A7E8F61A85DE3D008A1581 /* AppDelegate.m */,
 				82A7E8F81A85DE3D008A1581 /* MasterViewController.h */,
 				82A7E8F91A85DE3D008A1581 /* MasterViewController.m */,
+				82A7E9591A86ACD8008A1581 /* fade-iphone.png */,
 				82A7E9241A86105D008A1581 /* unused */,
 				82A7E8FE1A85DE3E008A1581 /* Main.storyboard */,
 				82A7E9011A85DE3E008A1581 /* Images.xcassets */,
@@ -296,6 +299,7 @@
 			files = (
 				82A7E9001A85DE3E008A1581 /* Main.storyboard in Resources */,
 				023F06B21A86947D003C6A2A /* reception_1.png in Resources */,
+				82A7E95A1A86ACD8008A1581 /* fade-iphone.png in Resources */,
 				82A7E9051A85DE3E008A1581 /* LaunchScreen.xib in Resources */,
 				82A7E9231A85F638008A1581 /* ControlCollectionViewCell.xib in Resources */,
 				023F06B61A86947D003C6A2A /* reception_5.png in Resources */,
