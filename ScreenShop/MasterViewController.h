@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MasterViewController : UITableViewController
+@interface MasterViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
+-(IBAction)save:(id)sender;
+-(IBAction)sliderAdjusted:(id)sender;
+-(IBAction)changePhotoButtonPushed:(id)sender;
+
+@property (nonatomic) IBOutlet UIImageView *screenshotImageView;
 
 @end
 
