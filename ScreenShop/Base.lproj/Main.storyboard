@@ -190,6 +190,9 @@
                                     <outlet property="delegate" destination="Iea-Xm-Oov" id="CvC-9j-ZrV"/>
                                 </connections>
                             </collectionView>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="battery_full.png" translatesAutoresizingMaskIntoConstraints="NO" id="H8V-PD-yZJ">
+                                <rect key="frame" x="339" y="46" width="29" height="10"/>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nho-Aw-Bb1">
                                 <rect key="frame" x="0.0" y="320" width="375" height="347"/>
                                 <subviews>
@@ -380,6 +383,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="batteryButton" destination="YWc-Xf-bv0" id="Na5-3E-rEV"/>
+                        <outlet property="batteryOverlay" destination="H8V-PD-yZJ" id="vwZ-eh-Isc"/>
                         <outlet property="carrierButton" destination="uet-z6-63l" id="eNq-Px-QMN"/>
                         <outlet property="collectionView" destination="yjN-fg-hTM" id="oIH-gQ-cen"/>
                         <outlet property="notificationButton" destination="27l-NV-7cA" id="sw6-3X-KCx"/>
@@ -401,6 +405,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="battery_full.png" width="54" height="21"/>
         <image name="fade-iphone.png" width="750" height="184"/>
         <image name="fakeiphonemessage.png" width="750" height="1334"/>
     </resources>

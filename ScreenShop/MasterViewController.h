@@ -39,6 +39,9 @@
 @property (nonatomic) IBOutlet UIButton *batteryButton;
 @property (nonatomic) IBOutlet UIButton *timeButton;
 
+
+@property IBOutlet UIImageView *batteryOverlay;
+
 @property (nonatomic) IBOutlet UIImageView *screenshotImageView;
 @property (nonatomic) IBOutlet UICollectionView *collectionView;
 
