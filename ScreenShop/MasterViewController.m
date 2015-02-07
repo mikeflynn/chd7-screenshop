@@ -351,7 +351,7 @@
     //self.selectedNotificationName is the image name
     
     if(!self.notificationOverlay) {
-        CGRect notificationOverlaySize = CGRectMake(self.screenshotImageView.frame.size.width, 20.0f, 85.0f, 20.0f);
+        CGRect notificationOverlaySize = CGRectMake(0.0f, 0.0f, self.screenshotImageView.frame.size.width, 60.0f);
         self.notificationOverlay = [[UIView alloc] initWithFrame:notificationOverlaySize];
     }
     
