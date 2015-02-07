@@ -263,6 +263,7 @@
 
 -(void)updateCarrierOnScreenshot {
     //use self.carrier for the carrier name
+/*
     if(!self.carrier) {
         CGRect carrierOverlaySize = CGRectMake(10.0f, 0.0f, 20.0f, 20.0f);
         self.carrierOverlay = [[UIView alloc] initWithFrame:carrierOverlaySize];
@@ -275,6 +276,7 @@
         self.carrierOverlay.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:receptionImg]];
         [self.screenshotImageView addSubview:self.carrierOverlay];
     }
+*/
 }
 
 -(void)updateReceptionOnScreenshot {
