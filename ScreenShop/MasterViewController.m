@@ -23,6 +23,7 @@
 
 @property UIView *batteryOverlay;
 @property UIView *receptionOverlay;
+@property UIView *carrierOverlay;
 
 //segmented control or slider
 -(void)batteryLevelAdjusted:(id)sender;
@@ -181,7 +182,20 @@
 
 -(void)updateCarrierOnScreenshot {
     //use self.carrier for the carrier name
+    if(!self.carrier) {
+        CGRect carrierOverlaySize = CGRectMake(10.0f, 0.0f, 20.0f, 20.0f);
+        self.carrierOverlay = [[UIView alloc] initWithFrame:carrierOverlaySize];
+    }
+    
+    if([self.carrier isEqual:@"Unchanged"]) {
+        [self.carrierOverlay removeFromSuperview];
+    } else {
+        NSString *receptionImg = [NSString stringWithFormat:@"reception_%ld", self.carrier];
+        self.carrierOverlay.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:receptionImg]];
+        [self.screenshotImageView addSubview:self.carrierOverlay];
+    }
 }
+
 -(void)updateReceptionOnScreenshot {
     //use self.receptionLevel for value
     if(!self.receptionOverlay) {
@@ -189,7 +203,9 @@
         self.receptionOverlay = [[UIView alloc] initWithFrame:receptionOverlaySize];
     }
     
-    if(self.receptionLevel) {
+    if(self.receptionLevel == -1) {
+        [self.receptionOverlay removeFromSuperview];
+    } else {
         NSString *receptionImg = [NSString stringWithFormat:@"reception_%ld", self.receptionLevel];
         self.receptionOverlay.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:receptionImg]];
         [self.screenshotImageView addSubview:self.receptionOverlay];
