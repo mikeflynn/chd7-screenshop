@@ -33,7 +33,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fakeiphonemessage.png" translatesAutoresizingMaskIntoConstraints="NO" id="96s-ns-DS3">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="40" width="375" height="627"/>
                                 <color key="backgroundColor" red="1" green="0.15151276513947176" blue="0.25988405161410655" alpha="0.050000000000000003" colorSpace="calibratedRGB"/>
                             </imageView>
                             <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yjN-fg-hTM">
@@ -338,7 +338,7 @@
                             <constraint firstItem="nho-Aw-Bb1" firstAttribute="leading" secondItem="jV6-Nz-x23" secondAttribute="leadingMargin" id="WFX-gW-bHr"/>
                             <constraint firstItem="nho-Aw-Bb1" firstAttribute="top" secondItem="Du6-rI-lVE" secondAttribute="bottom" constant="300" id="bM5-Xa-pdd"/>
                             <constraint firstAttribute="centerX" secondItem="nho-Aw-Bb1" secondAttribute="centerX" id="bTq-Ba-0qs"/>
-                            <constraint firstItem="96s-ns-DS3" firstAttribute="top" secondItem="jV6-Nz-x23" secondAttribute="top" id="d5Y-0U-rNB"/>
+                            <constraint firstItem="96s-ns-DS3" firstAttribute="top" secondItem="jV6-Nz-x23" secondAttribute="top" constant="40" id="d5Y-0U-rNB"/>
                             <constraint firstItem="nho-Aw-Bb1" firstAttribute="width" secondItem="jV6-Nz-x23" secondAttribute="width" id="f5V-5k-qiV"/>
                             <constraint firstAttribute="trailingMargin" secondItem="nho-Aw-Bb1" secondAttribute="trailing" id="fzO-jb-0tY"/>
                             <constraint firstItem="nho-Aw-Bb1" firstAttribute="leading" secondItem="96s-ns-DS3" secondAttribute="trailing" constant="-600" id="i3S-SI-iHG"/>
