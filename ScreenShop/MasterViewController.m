@@ -58,9 +58,16 @@
     [self setupNotificationImages];
     [self setDefaultImage];
     
+    self.navigationController.navigationBarHidden = YES;
+    
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    
     self.carriers = @[@"Unchanged",@"AT&T", @"Verizon", @"T-Mobile", @"Sprint", @"Boost", @"Metro PCS"];
 }
-
+-(BOOL)prefersStatusBarHidden {
+    return YES;
+}
 -(void)setupNotificationImages {
     
     self.notificationImages = [NSMutableArray arrayWithObjects:@"twitterNotification", @"fbNotification", @"gmailNotification", nil];
