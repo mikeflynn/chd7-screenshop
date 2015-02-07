@@ -9,6 +9,12 @@
 #import "MasterViewController.h"
 #import "ControlCollectionViewCell.h"
 
+#import "ActionSheetStringPicker.h"
+#import "ActionSheetDatePicker.h"
+
+#import <Photos/Photos.h>
+
+
 @interface MasterViewController ()
 
 @property NSInteger batteryLevel;
@@ -24,6 +30,8 @@
 @property UIView *batteryOverlay;
 @property UIView *receptionOverlay;
 @property UIView *carrierOverlay;
+
+@property UIImagePickerController *imagePickerController;
 
 //segmented control or slider
 -(void)batteryLevelAdjusted:(id)sender;
@@ -48,6 +56,7 @@
     [super viewDidLoad];
     [self setupCollectionView];
     [self setupNotificationImages];
+    [self setDefaultImage];
     
     self.carriers = @[@"Unchanged",@"AT&T", @"Verizon", @"T-Mobile", @"Sprint", @"Boost", @"Metro PCS"];
 }
@@ -55,6 +64,31 @@
 -(void)setupNotificationImages {
     
     self.notificationImages = [NSMutableArray arrayWithObjects:@"twitterNotification", @"fbNotification", @"gmailNotification", nil];
+}
+
+-(void)setDefaultImage {
+    
+    PHFetchOptions *fetchOptions = [[PHFetchOptions alloc] init];
+    fetchOptions.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES]];
+    PHFetchResult *fetchResult = [PHAsset fetchAssetsWithMediaType:PHAssetMediaTypeImage options:fetchOptions];
+    PHAsset *lastAsset = [fetchResult lastObject];
+    [[PHImageManager defaultManager] requestImageForAsset:lastAsset
+                                               targetSize:self.screenshotImageView.bounds.size
+                                              contentMode:PHImageContentModeAspectFill
+                                                  options:PHImageRequestOptionsVersionCurrent
+                                            resultHandler:^(UIImage *result, NSDictionary *info) {
+                                                
+                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                                    
+                                                    NSLog(@"Retrieved image w = %f h = %f", result.size.width, result.size.height);
+                                                    
+                                                    NSLog(@"my screen w = %f h = %f", [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+                                                    
+                                                    if (result != nil && result.size.height/2 == [UIScreen mainScreen].bounds.size.height && result.size.width/2 == [UIScreen mainScreen].bounds.size.width)
+                                                        self.screenshotImageView.image = result;
+                                                    
+                                                });
+                                            }];
 }
 
 -(void)setupCollectionView {
@@ -80,7 +114,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - IBActions
+#pragma mark - Photos
 
 -(IBAction)save:(id)sender {
     NSLog(@"Save image to photos");
@@ -90,7 +124,27 @@
     
     NSLog(@"Select a new photo from photos");
     
+    self.imagePickerController = [[UIImagePickerController alloc] init];
+    self.imagePickerController.delegate = self;
+    self.imagePickerController.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+
+    [self presentViewController:self.imagePickerController animated:YES completion:nil];
+    
 }
+
+
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    self.screenshotImageView.image = [info objectForKey:UIImagePickerControllerOriginalImage];
+}
+
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - IBActions
 
 -(void)batteryLevelAdjusted:(id)sender;{
     
@@ -122,8 +176,8 @@
         [self.screenshotImageView addSubview:self.batteryOverlay];
     }
     
-    self.batteryLabel.text = [NSString stringWithFormat:@"Battery: %li%%", self.batteryLevel];
-    
+    NSLog(@"Battery: %li%%", self.batteryLevel);
+    [self updateBatteryLevelOnScreenshot];
 }
 
 -(void)receptionLevelAdjusted:(id)sender {
@@ -142,6 +196,8 @@
     
     self.carrier = newCarrier;
     
+    NSLog(@"New carrier: %@", newCarrier);
+    
     [self updateCarrierOnScreenshot];
     
 }
@@ -154,12 +210,20 @@
     
     self.timeString = [myDateFormatter stringFromDate:newDate];
     
+    NSLog(@"New time string: %@", self.timeString);
+    
     [self updateTimeOnScreenshot];
     
 }
 -(IBAction)randomNotificationAdded:(id)sender {
     
-    int randomIndex = (int)arc4random_uniform(self.notificationImages.count);
+    
+    NSString *prevnotification = self.selectedNotificationName;
+    
+    int randomIndex = (int)arc4random_uniform(100);
+    NSLog(@"Random index: %i", randomIndex);
+    
+    randomIndex = randomIndex % self.notificationImages.count;
     
     if (randomIndex == self.notificationImages.count) {
         randomIndex--;
@@ -167,6 +231,12 @@
     
     self.selectedNotificationName = (NSString *)[self.notificationImages objectAtIndex:randomIndex];
     [self.notificationImages removeObjectAtIndex:randomIndex];
+    
+    if (prevnotification) {
+        [self.notificationImages addObject:prevnotification];
+    }
+    
+    NSLog(@"Selected notification: %@", self.selectedNotificationName);
     
     [self addNewNotificationToScreenshot];
     
@@ -176,7 +246,18 @@
     [self.notificationImages addObject:self.selectedNotificationName];
     self.selectedNotificationName = nil;
     
+    if (self.selectedNotificationName) {
+        
+        NSLog(@"STILL selected notification: %@", self.selectedNotificationName);
+    }
+    else {
+        NSLog(@"Removed notification");
+    }
+    
     [self removeNotificationFromScreenshot];
+    
+}
+-(void)updateBatteryLevelOnScreenshot {
     
 }
 
@@ -299,8 +380,90 @@
         self.batteryLabel.text = [NSString stringWithFormat:@"Battery: %li%%", self.batteryLevel];
     }*/
 }
+#pragma mark ActionSheets -
 
-#pragma mark UIPickerView -
+-(IBAction)showCarrierPicker:(id)sender {
+    
+    int selectedIndex = 0;
+    
+    if (self.carrier) {
+        for (int i = 0; i < self.carriers.count; ++i) {
+            if ([(NSString *)[self.carriers objectAtIndex:i] isEqualToString:self.carrier]){
+                selectedIndex = i;
+                break;
+            }
+        }
+    }
+    
+    [ActionSheetStringPicker showPickerWithTitle:@"Select carrier" rows:self.carriers initialSelection:selectedIndex doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+
+        self.carrier = (selectedIndex == 0) ? nil : [self.carriers objectAtIndex:selectedIndex];
+        NSLog(@"new carrier: %@", self.carrier);
+        [self updateCarrierOnScreenshot];
+    } cancelBlock:^(ActionSheetStringPicker *picker) {
+        
+    } origin:self.carrierButton];
+    
+}
+
+-(IBAction)showReceptionPicker:(id)sender {
+    
+    [ActionSheetStringPicker showPickerWithTitle:@"Select reception level" rows:@[@"No bars", @"1 bar", @"2 bars", @"3 bars", @"Full bars"] initialSelection:self.receptionLevel doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+        self.receptionLevel = selectedIndex;
+        NSLog(@"new reception level: %li", self.receptionLevel);
+        
+        [self updateReceptionOnScreenshot];
+    } cancelBlock:^(ActionSheetStringPicker *picker) {
+        
+    } origin:self.carrierButton];
+    
+}
+
+-(IBAction)showTimePicker:(id)sender {
+    
+    [ActionSheetDatePicker showPickerWithTitle:@"Select time" datePickerMode:UIDatePickerModeTime selectedDate:[NSDate date] doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
+        
+        [self timeUpdated:selectedDate];
+        
+    } cancelBlock:^(ActionSheetDatePicker *picker) {
+        
+    } origin:self.timeButton];
+    
+}
+-(IBAction)showBatteryPicker:(id)sender {
+    
+    int selectedIndex;
+    
+    if (self.batteryLevel == BATTERY_NOT_SET) {
+        selectedIndex = 0;
+    }
+    else if (self.batteryLevel == 0){
+        selectedIndex = 1;
+    }
+    else {
+        selectedIndex = 2;
+    }
+    
+    [ActionSheetStringPicker showPickerWithTitle:@"Select battery level" rows:@[@"Unchanged", @"Empty", @"Full"]initialSelection:selectedIndex doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+        
+        if (selectedIndex == 0)
+            self.batteryLevel = BATTERY_NOT_SET;
+        else if (selectedIndex == 1)
+            self.batteryLevel = 0;
+        else
+            self.batteryLevel = 100;
+        
+        NSLog(@"New battery level: %li", self.batteryLevel);
+        
+        [self updateBatteryLevelOnScreenshot];
+    } cancelBlock:^(ActionSheetStringPicker *picker) {
+        
+    } origin:self.carrierButton];
+    
+}
+
+
+#pragma mark - UIPickerView
 
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     return 1;

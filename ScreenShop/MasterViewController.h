@@ -19,14 +19,25 @@
 #define COLLECTION_VIEW_TOP_BORDER 20
 #define COLLECTION_VIEW_SIDE_BORDER 20
 
-@interface MasterViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
+@interface MasterViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 -(IBAction)save:(id)sender;
 -(IBAction)changePhotoButtonPushed:(id)sender;
+-(IBAction)showCarrierPicker:(id)sender;
+-(IBAction)showBatteryPicker:(id)sender;
+-(IBAction)showTimePicker:(id)sender;
+//-(IBAction)showNotificationPicker:(id)sender;
+-(IBAction)showReceptionPicker:(id)sender;
 
 //buttons
 -(IBAction)randomNotificationAdded:(id)sender;
 -(IBAction)randomNotificationRemoved:(id)sender;
+
+@property (nonatomic) IBOutlet UIButton *carrierButton;
+@property (nonatomic) IBOutlet UIButton *receptionButton;
+@property (nonatomic) IBOutlet UIButton *notificationButton;
+@property (nonatomic) IBOutlet UIButton *batteryButton;
+@property (nonatomic) IBOutlet UIButton *timeButton;
 
 @property (nonatomic) IBOutlet UIImageView *screenshotImageView;
 @property (nonatomic) IBOutlet UICollectionView *collectionView;
