@@ -106,6 +106,7 @@
     self.batteryLabel.text = [NSString stringWithFormat:@"Battery: %li%%", self.batteryLevel];
     
 }
+
 -(void)receptionLevelAdjusted:(id)sender {
     
     self.receptionLevel = ((UISegmentedControl *)sender).selectedSegmentIndex;

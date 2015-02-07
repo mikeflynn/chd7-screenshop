@@ -168,6 +168,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="yjN-fg-hTM" id="oIH-gQ-cen"/>
+                        <outlet property="screenshotImageView" destination="96s-ns-DS3" id="5tD-8k-ClW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pCF-Ec-MKU" userLabel="First Responder" sceneMemberID="firstResponder"/>
