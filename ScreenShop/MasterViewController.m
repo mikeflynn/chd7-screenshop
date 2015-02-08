@@ -71,7 +71,7 @@
     [self.screenshotImageView addSubview:self.notificationOverlay];
     [self.screenshotImageView addSubview:self.carrierOverlay];
     
-    self.carriers = @[@"Unchanged",@"AT&T", @"Verizon", @"T-Mobile", @"Sprint", @"Boost", @"Metro PCS"];
+    self.carriers = @[@"Unchanged",@"AT&T", @"Verizon", @"T-Mobile", @"Sprint", @"Boost", @"Metro PCS", @"Vodafone UK", @"Telecom NZ", @"中国移动", ];
 }
 
 -(BOOL)prefersStatusBarHidden {
@@ -389,7 +389,7 @@
     return 1;
 }
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 5;
+    return 6;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -414,6 +414,9 @@
             break;
         case NOKIA_ROW:
             imageName = @"screenshop-07.png";
+            break;
+        case SAVE_ROW:
+            imageName = @"screenshop-08.png";
             break;
         default:
             break;
@@ -471,6 +474,9 @@
             break;
         case NOKIA_ROW:
             [self showNokia];
+            break;
+        case SAVE_ROW:
+            [self save:cell];
             break;
         default:
             break;

@@ -55,6 +55,7 @@
 		82ECAE6A1A86E8680007A664 /* fake-phone-for-app.png in Resources */ = {isa = PBXBuildFile; fileRef = 82ECAE691A86E8680007A664 /* fake-phone-for-app.png */; };
 		82ECAE6C1A86EEDC0007A664 /* screenshop-07.png in Resources */ = {isa = PBXBuildFile; fileRef = 82ECAE6B1A86EEDC0007A664 /* screenshop-07.png */; };
 		82ECAE6E1A86EF5D0007A664 /* nokia.png in Resources */ = {isa = PBXBuildFile; fileRef = 82ECAE6D1A86EF5D0007A664 /* nokia.png */; };
+		82ECAE701A8805400007A664 /* screenshop-08.png in Resources */ = {isa = PBXBuildFile; fileRef = 82ECAE6F1A8805400007A664 /* screenshop-08.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +133,7 @@
 		82ECAE691A86E8680007A664 /* fake-phone-for-app.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fake-phone-for-app.png"; sourceTree = "<group>"; };
 		82ECAE6B1A86EEDC0007A664 /* screenshop-07.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenshop-07.png"; sourceTree = "<group>"; };
 		82ECAE6D1A86EF5D0007A664 /* nokia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nokia.png; sourceTree = "<group>"; };
+		82ECAE6F1A8805400007A664 /* screenshop-08.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenshop-08.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +220,7 @@
 		82A7E91C1A85E716008A1581 /* photos */ = {
 			isa = PBXGroup;
 			children = (
+				82ECAE6F1A8805400007A664 /* screenshop-08.png */,
 				82ECAE6D1A86EF5D0007A664 /* nokia.png */,
 				82ECAE6B1A86EEDC0007A664 /* screenshop-07.png */,
 				82ECAE691A86E8680007A664 /* fake-phone-for-app.png */,
@@ -373,6 +376,7 @@
 				023F06B21A86947D003C6A2A /* reception_1.png in Resources */,
 				82A7E95A1A86ACD8008A1581 /* fade-iphone.png in Resources */,
 				0250F2B01A86C88200B92382 /* battery_empty.png in Resources */,
+				82ECAE701A8805400007A664 /* screenshop-08.png in Resources */,
 				82A7E96D1A86E10A008A1581 /* screenshop-02.png in Resources */,
 				023F06BF1A869E4C003C6A2A /* carrier_att.png in Resources */,
 				023F06C51A869E4C003C6A2A /* carrier_tmobile.png in Resources */,
