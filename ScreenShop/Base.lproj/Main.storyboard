@@ -32,7 +32,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fakeiphonemessage.png" translatesAutoresizingMaskIntoConstraints="NO" id="96s-ns-DS3">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fake-phone-for-app.png" translatesAutoresizingMaskIntoConstraints="NO" id="96s-ns-DS3">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="1" green="0.15151276513947176" blue="0.25988405161410655" alpha="0.050000000000000003" colorSpace="calibratedRGB"/>
                             </imageView>
@@ -72,115 +72,6 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="batteryCell" id="TLa-0d-e0z">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="310"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <segmentedControl opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="5QM-ld-XAI">
-                                                    <rect key="frame" x="100" y="105" width="307" height="29"/>
-                                                    <segments>
-                                                        <segment title="Empty"/>
-                                                        <segment title="Unchanged"/>
-                                                        <segment title="Full"/>
-                                                    </segments>
-                                                </segmentedControl>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Battery" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1H8-Pp-7Kk">
-                                                    <rect key="frame" x="127" y="45" width="254" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="56" id="2Zh-98-EQM"/>
-                                                        <constraint firstAttribute="height" constant="21" id="GBR-Br-RfR"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                    </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="receptionCell" id="Lcm-OE-OdZ">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="310"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="n2Z-pB-d2U">
-                                                    <rect key="frame" x="137" y="105" width="234" height="29"/>
-                                                    <segments>
-                                                        <segment title="None"/>
-                                                        <segment title="1"/>
-                                                        <segment title="2"/>
-                                                        <segment title="3"/>
-                                                        <segment title="4"/>
-                                                    </segments>
-                                                </segmentedControl>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Reception bars" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aaX-yQ-n8C">
-                                                    <rect key="frame" x="196" y="49" width="117" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="56" id="Ncu-Dl-D7o"/>
-                                                        <constraint firstAttribute="height" constant="21" id="fTw-6d-2us"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                    </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="carrierCell" id="lWp-S2-uNk">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="310"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ERf-9d-VLj">
-                                                    <rect key="frame" x="-8" y="21" width="508" height="162"/>
-                                                    <connections>
-                                                        <outlet property="dataSource" destination="Iea-Xm-Oov" id="e5f-ma-sV2"/>
-                                                        <outlet property="delegate" destination="Iea-Xm-Oov" id="hHK-er-VTz"/>
-                                                    </connections>
-                                                </pickerView>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                    </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="timeCell" id="61Q-Pg-2yx">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="310"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S6S-zs-ACw">
-                                                    <rect key="frame" x="235" y="8" width="38" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="56" id="Kdw-1Q-eWw"/>
-                                                        <constraint firstAttribute="height" constant="21" id="nfH-PT-VZS"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Xar-HH-25b">
-                                                    <rect key="frame" x="0.0" y="43" width="508" height="162"/>
-                                                    <date key="date" timeIntervalSinceReferenceDate="444994137.78165197">
-                                                        <!--2015-02-07 09:28:57 +0000-->
-                                                    </date>
-                                                </datePicker>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1OX-r2-lK1">
-                                                    <rect key="frame" x="8" y="-48" width="254" height="107"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </view>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                    </collectionViewCell>
                                 </cells>
                                 <connections>
                                     <outlet property="dataSource" destination="Iea-Xm-Oov" id="Ylz-aO-QTc"/>
@@ -202,6 +93,19 @@
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gmailNotification.png" translatesAutoresizingMaskIntoConstraints="NO" id="9NU-qb-7W6">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="77"/>
                             </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L8f-7r-inO">
+                                <rect key="frame" x="44" y="-1" width="108" height="20"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="T-Mobile LTE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pRW-ys-bEU">
+                                        <rect key="frame" x="0.0" y="0.0" width="109" height="21"/>
+                                        <color key="backgroundColor" red="0.96862751245498657" green="0.96862751245498657" blue="0.96862751245498657" alpha="1" colorSpace="deviceRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.96862751245498657" green="0.96862751245498657" blue="0.96862751245498657" alpha="0.0" colorSpace="deviceRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -248,7 +152,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pCF-Ec-MKU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="653.5" y="36.5"/>
+            <point key="canvasLocation" x="674.5" y="77.5"/>
         </scene>
     </scenes>
     <resources>
