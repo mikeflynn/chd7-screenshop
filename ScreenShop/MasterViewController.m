@@ -324,12 +324,12 @@
 
     if (self.carrier){
         
-        self.carrierOverlay.hidden = NO;
+        self.carrierView.hidden = NO;
         self.carrierLabel.text = [NSString stringWithFormat:@"%@ %@", self.carrier, self.signalStrength];
         
     }
     else {
-        self.carrierOverlay.hidden = YES;
+        self.carrierView.hidden = YES;
     }
     /*
     if(!self.carrier) {
@@ -360,9 +360,9 @@
     } else {
         NSString *receptionImg = [NSString stringWithFormat:@"reception_%ld", self.receptionLevel];
         
-        self.receptionOverlay.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:receptionImg]];
+        self.receptionOverlay.image = [UIImage imageNamed:receptionImg];
         self.receptionOverlay.hidden = NO;
-        self.receptionOverlay.image = nil;
+        //self.receptionOverlay.image = nil;
     }
 }
 -(void)updateTimeOnScreenshot {
@@ -372,6 +372,7 @@
 -(void)addNewNotificationToScreenshot{
     //self.selectedNotificationName is the image name
     
+    self.carrierView.hidden = YES;
     self.notificationOverlay.hidden = NO;
     self.notificationOverlay.image = [UIImage imageNamed:self.selectedNotificationName];
 }
@@ -479,8 +480,9 @@
 -(void)showNokia{
     
     //self.carrier = nil;
-    self.carrierOverlay.hidden = YES;
+    self.carrierView.hidden = YES;
     self.carrierLabel.hidden = YES;
+    self.notificationOverlay.hidden = YES;
     self.screenshotImageView.image = [UIImage imageNamed:@"nokia.png"];
     
 }

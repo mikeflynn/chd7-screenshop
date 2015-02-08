@@ -84,17 +84,14 @@
                                     <constraint firstAttribute="height" constant="50" id="GY0-2S-HFv"/>
                                 </constraints>
                             </imageView>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="battery_full.png" translatesAutoresizingMaskIntoConstraints="NO" id="H8V-PD-yZJ">
-                                <rect key="frame" x="338" y="5" width="31" height="12"/>
-                            </imageView>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="reception_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="GG4-bk-RyK">
-                                <rect key="frame" x="2" y="3" width="48" height="12"/>
-                            </imageView>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gmailNotification.png" translatesAutoresizingMaskIntoConstraints="NO" id="9NU-qb-7W6">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="77"/>
                             </imageView>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="battery_full.png" translatesAutoresizingMaskIntoConstraints="NO" id="H8V-PD-yZJ">
+                                <rect key="frame" x="337" y="5" width="33" height="12"/>
+                            </imageView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L8f-7r-inO">
-                                <rect key="frame" x="44" y="-1" width="108" height="20"/>
+                                <rect key="frame" x="45" y="-1" width="108" height="20"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="T-Mobile LTE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pRW-ys-bEU">
                                         <rect key="frame" x="0.0" y="0.0" width="109" height="21"/>
@@ -106,6 +103,9 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.96862751245498657" green="0.96862751245498657" blue="0.96862751245498657" alpha="0.0" colorSpace="deviceRGB"/>
                             </view>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="reception_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="GG4-bk-RyK">
+                                <rect key="frame" x="0.0" y="3" width="48" height="12"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -146,8 +146,11 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="batteryOverlay" destination="H8V-PD-yZJ" id="Zxa-p0-bYx"/>
+                        <outlet property="carrierLabel" destination="pRW-ys-bEU" id="t1Q-ZM-QXK"/>
+                        <outlet property="carrierView" destination="L8f-7r-inO" id="pne-rv-sZd"/>
                         <outlet property="notificationOverlay" destination="9NU-qb-7W6" id="jZm-Zw-NqT"/>
                         <outlet property="receptionOverlay" destination="GG4-bk-RyK" id="LZy-T9-pKR"/>
+                        <outlet property="screenshotImageView" destination="96s-ns-DS3" id="iIT-1j-sZH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pCF-Ec-MKU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -157,7 +160,7 @@
     </scenes>
     <resources>
         <image name="battery_full.png" width="54" height="21"/>
-        <image name="fakeiphonemessage.png" width="766" height="1272"/>
+        <image name="fake-phone-for-app.png" width="750" height="1334"/>
         <image name="gmailNotification.png" width="750" height="136"/>
         <image name="reception_1.png" width="50" height="15"/>
         <image name="screenshop-01.png" width="750" height="620"/>
