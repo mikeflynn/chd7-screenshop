@@ -304,10 +304,9 @@
     
     if(self.batteryLevel == 0) {
         self.batteryOverlay.hidden = NO;
-        self.batteryOverlay.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"battery_empty"]];
-        self.batteryOverlay.image = nil;
+        self.batteryOverlay.image = [UIImage imageNamed:@"battery_empty"];
     } else if(self.batteryLevel == 100) {
-        self.batteryOverlay.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"battery_full"]];
+        self.batteryOverlay.image = [UIImage imageNamed:@"battery_full"];
         self.batteryOverlay.hidden = NO;
     } else {
         self.batteryOverlay.hidden = YES;
@@ -359,9 +358,7 @@
     //self.selectedNotificationName is the image name
     
     self.notificationOverlay.hidden = NO;
-    self.notificationOverlay.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:self.selectedNotificationName]];
-    self.notificationOverlay.image = nil;
-    
+    self.notificationOverlay.image = [UIImage imageNamed:self.selectedNotificationName];
 }
 -(void)removeNotificationFromScreenshot{
     //self.selectedNotificationName is the current image name
