@@ -379,7 +379,7 @@
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     UICollectionViewCell *cell = (UICollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"pictureCell" forIndexPath:indexPath];
-    UIImageView *imageView = [cell viewWithTag:1];
+    UIImageView *imageView = (UIImageView *)[cell viewWithTag:1];
     
     NSString *imageName;
     
@@ -536,7 +536,7 @@
 
 -(IBAction)showReceptionPicker:(id)sender {
     
-    [ActionSheetStringPicker showPickerWithTitle:@"Select Reception Level" rows:@[@"No bars", @"1 bar", @"2 bars", @"3 bars", @"Full bars"] initialSelection:self.receptionLevel doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+    [ActionSheetStringPicker showPickerWithTitle:@"Select Reception Level" rows:@[@"No bars", @"1 bar", @"2 bars", @"3 bars", @"4 bars"] initialSelection:self.receptionLevel doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
         self.receptionLevel = selectedIndex;
         NSLog(@"new reception level: %li", self.receptionLevel);
         
