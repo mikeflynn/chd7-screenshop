@@ -56,6 +56,7 @@
 		82ECAE6C1A86EEDC0007A664 /* screenshop-07.png in Resources */ = {isa = PBXBuildFile; fileRef = 82ECAE6B1A86EEDC0007A664 /* screenshop-07.png */; };
 		82ECAE6E1A86EF5D0007A664 /* nokia.png in Resources */ = {isa = PBXBuildFile; fileRef = 82ECAE6D1A86EF5D0007A664 /* nokia.png */; };
 		82ECAE701A8805400007A664 /* screenshop-08.png in Resources */ = {isa = PBXBuildFile; fileRef = 82ECAE6F1A8805400007A664 /* screenshop-08.png */; };
+		82ECAE721A88277C0007A664 /* splashscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 82ECAE711A88277C0007A664 /* splashscreen.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,6 +135,7 @@
 		82ECAE6B1A86EEDC0007A664 /* screenshop-07.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenshop-07.png"; sourceTree = "<group>"; };
 		82ECAE6D1A86EF5D0007A664 /* nokia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nokia.png; sourceTree = "<group>"; };
 		82ECAE6F1A8805400007A664 /* screenshop-08.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenshop-08.png"; sourceTree = "<group>"; };
+		82ECAE711A88277C0007A664 /* splashscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splashscreen.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -251,6 +253,7 @@
 				023F06AE1A86947D003C6A2A /* reception_3.png */,
 				023F06AF1A86947D003C6A2A /* reception_4.png */,
 				023F06B01A86947D003C6A2A /* reception_5.png */,
+				82ECAE711A88277C0007A664 /* splashscreen.png */,
 			);
 			name = photos;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 				82A7E96C1A86E10A008A1581 /* screenshop-01.png in Resources */,
 				023F06C61A869E4C003C6A2A /* carrier_verizon.png in Resources */,
 				82ECAE6C1A86EEDC0007A664 /* screenshop-07.png in Resources */,
+				82ECAE721A88277C0007A664 /* splashscreen.png in Resources */,
 				82A7E9051A85DE3E008A1581 /* LaunchScreen.xib in Resources */,
 				82A7E9231A85F638008A1581 /* ControlCollectionViewCell.xib in Resources */,
 				0250F2B81A86D63A00B92382 /* twitterNotification.png in Resources */,

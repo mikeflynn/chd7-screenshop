@@ -71,7 +71,7 @@
     [self.screenshotImageView addSubview:self.notificationOverlay];
     [self.screenshotImageView addSubview:self.carrierOverlay];
     
-    self.carriers = @[@"Unchanged",@"AT&T", @"Verizon", @"T-Mobile", @"Sprint", @"Boost", @"Metro PCS", @"Vodafone UK", @"Telecom NZ", @"中国移动", ];
+    self.carriers = @[@"Unchanged",@"AT&T", @"Verizon", @"T-Mobile", @"Sprint", @"Boost", @"Metro PCS", @"Vodafone UK (+)", @"Bell Canada (+)", @"Telecom NZ (+)", @"中国移动 (+)"];
 }
 
 -(BOOL)prefersStatusBarHidden {
@@ -566,6 +566,9 @@
     [ActionSheetStringPicker showPickerWithTitle:@"Select Carrier" rows:self.carriers initialSelection:selectedIndex doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
 
         self.carrier = (selectedIndex == 0) ? nil : [self.carriers objectAtIndex:selectedIndex];
+        if (self.carrier && [self.carrier containsString:@" (+)"]){
+            self.carrier = [self.carrier substringToIndex:(self.carrier.length - 4)];
+        }
         NSLog(@"new carrier: %@", self.carrier);
         [self updateCarrierOnScreenshot];
     } cancelBlock:^(ActionSheetStringPicker *picker) {
@@ -576,8 +579,9 @@
 
 -(IBAction)showReceptionPicker:(id)sender {
     
-    [ActionSheetStringPicker showPickerWithTitle:@"Select Reception Level" rows:@[@"No bars", @"1 bar", @"2 bars", @"3 bars", @"4 bars", @"4 bars + LTE", @"EDGE", @"3G", @"4G", @"LTE", @"7G", @"WARREN G"] initialSelection:self.receptionLevel doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-        self.receptionLevel = selectedIndex;
+    [ActionSheetStringPicker showPickerWithTitle:@"Select Reception Level" rows:@[@"No change", @"1 bar", @"2 bars", @"3 bars", @"4 bars", @"4 bars + LTE", @"EDGE", @"3G", @"4G", @"LTE", @"7G", @"WARREN G (+)"] initialSelection:self.receptionLevel doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+        
+        self.receptionLevel = (selectedIndex < 4) ? selectedIndex : 4;
         NSLog(@"new reception level: %li", self.receptionLevel);
         
         [self updateReceptionOnScreenshot];

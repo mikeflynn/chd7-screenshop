@@ -39,7 +39,7 @@
 @property (nonatomic) IBOutlet UIButton *notificationButton;
 @property (nonatomic) IBOutlet UIButton *batteryButton;
 @property (nonatomic) IBOutlet UIButton *timeButton;
-
+@property (nonatomic) IBOutlet UIButton *modifyScreenshotButton;
 
 @property IBOutlet UIImageView *batteryOverlay;
 @property IBOutlet UIImageView *receptionOverlay;
