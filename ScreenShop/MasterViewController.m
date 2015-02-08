@@ -75,7 +75,7 @@
 
 -(void)setupNotificationImages {
     
-    self.notificationImages = [NSMutableArray arrayWithObjects:@"gmailNotification", @"okcNotification", @"tinderNotification", @"twitterNotification", nil];
+    self.notificationImages = [NSMutableArray arrayWithObjects:@"tinderNotification", @"okcNotification", @"gmailNotification", @"twitterNotification", nil];
 }
 
 -(void)setDefaultImage {
