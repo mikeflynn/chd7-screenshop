@@ -483,6 +483,7 @@
     self.carrierView.hidden = YES;
     self.carrierLabel.hidden = YES;
     self.batteryOverlay.hidden = YES;
+    self.receptionOverlay.hidden = YES;
     self.notificationOverlay.hidden = YES;
     self.screenshotImageView.image = [UIImage imageNamed:@"nokia.png"];
     
