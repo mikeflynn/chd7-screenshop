@@ -348,9 +348,7 @@
     //self.selectedNotificationName is the image name
     
     self.notificationOverlay.hidden = NO;
-    self.notificationOverlay.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:self.selectedNotificationName]];
-    self.notificationOverlay.image = nil;
-    
+    self.notificationOverlay.image = [UIImage imageNamed:self.selectedNotificationName];
 }
 -(void)removeNotificationFromScreenshot{
     //self.selectedNotificationName is the current image name
