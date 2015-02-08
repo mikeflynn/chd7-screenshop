@@ -26,8 +26,11 @@
 
 @property NSMutableArray *notificationImages;
 @property NSString *selectedNotificationName;
+@property NSString *signalStrength;
 
 @property NSInteger selectedNotificationIndex;
+
+@property UIImage *backupImage;
 
 @property UIView *carrierOverlay;
 
@@ -61,10 +64,12 @@
     self.navigationController.navigationBarHidden = YES;
     self.batteryLevel = BATTERY_NOT_SET;
     self.selectedNotificationIndex = 0;
+    self.signalStrength = @"4G";
     
     [self.screenshotImageView addSubview:self.batteryOverlay];
     [self.screenshotImageView addSubview:self.receptionOverlay];
     [self.screenshotImageView addSubview:self.notificationOverlay];
+    [self.screenshotImageView addSubview:self.carrierOverlay];
     
     self.carriers = @[@"Unchanged",@"AT&T", @"Verizon", @"T-Mobile", @"Sprint", @"Boost", @"Metro PCS"];
 }
@@ -317,6 +322,16 @@
 -(void)updateCarrierOnScreenshot {
     //use self.carrier for the carrier name
 
+    if (self.carrier){
+        
+        self.carrierOverlay.hidden = NO;
+        self.carrierLabel.text = [NSString stringWithFormat:@"%@ %@", self.carrier, self.signalStrength];
+        
+    }
+    else {
+        self.carrierOverlay.hidden = YES;
+    }
+    /*
     if(!self.carrier) {
         CGRect carrierOverlaySize = CGRectMake(20.0f, 20.0f, 100.0f, 20.0f);
         self.carrierOverlay = [[UIView alloc] initWithFrame:carrierOverlaySize];
@@ -335,7 +350,7 @@
         //self.carrierOverlay.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:carrierImg]];
         self.carrierOverlay.backgroundColor = [UIColor redColor];
         [self.screenshotImageView addSubview:self.carrierOverlay];
-    }
+    }*/
 }
 
 -(void)updateReceptionOnScreenshot {
@@ -373,7 +388,7 @@
     return 1;
 }
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 4;
+    return 5;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -395,6 +410,9 @@
             break;
         case CARRIER_ROW:
             imageName = @"screenshop-03.png";
+            break;
+        case NOKIA_ROW:
+            imageName = @"screenshop-07.png";
             break;
         default:
             break;
@@ -450,9 +468,21 @@
         case RECEPTION_ROW:
             [self showReceptionPicker:cell];
             break;
+        case NOKIA_ROW:
+            [self showNokia];
+            break;
         default:
             break;
     }
+}
+
+-(void)showNokia{
+    
+    //self.carrier = nil;
+    self.carrierOverlay.hidden = YES;
+    self.carrierLabel.hidden = YES;
+    self.screenshotImageView.image = [UIImage imageNamed:@"nokia.png"];
+    
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
@@ -536,11 +566,35 @@
 
 -(IBAction)showReceptionPicker:(id)sender {
     
-    [ActionSheetStringPicker showPickerWithTitle:@"Select Reception Level" rows:@[@"No bars", @"1 bar", @"2 bars", @"3 bars", @"4 bars"] initialSelection:self.receptionLevel doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+    [ActionSheetStringPicker showPickerWithTitle:@"Select Reception Level" rows:@[@"No bars", @"1 bar", @"2 bars", @"3 bars", @"4 bars", @"4 bars + LTE", @"EDGE", @"3G", @"4G", @"LTE", @"7G", @"WARREN G"] initialSelection:self.receptionLevel doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
         self.receptionLevel = selectedIndex;
         NSLog(@"new reception level: %li", self.receptionLevel);
         
         [self updateReceptionOnScreenshot];
+        
+        if (!self.carrier) {
+            self.carrier = @"T-Mobile";
+        }
+        
+        if (selectedIndex == 5)
+            self.signalStrength = @"LTE";
+        else if (selectedIndex == 6)
+            self.signalStrength = @"EDGE";
+        else if (selectedIndex == 7)
+            self.signalStrength = @"3G";
+        else if (selectedIndex == 8)
+            self.signalStrength = @"4G";
+        else if (selectedIndex == 9)
+            self.signalStrength = @"LTE";
+        else if (selectedIndex == 10)
+            self.signalStrength = @"7G";
+        else if (selectedIndex == 11)
+            self.signalStrength = @"WARREN G";
+        else
+            self.signalStrength = @"4G";
+        
+        [self updateCarrierOnScreenshot];
+        
     } cancelBlock:^(ActionSheetStringPicker *picker) {
         
     } origin:sender];

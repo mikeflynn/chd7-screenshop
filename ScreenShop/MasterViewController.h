@@ -13,6 +13,7 @@
 #define RECEPTION_ROW 1
 #define CARRIER_ROW 2
 #define NOTIFICATION_ROW 3
+#define NOKIA_ROW 4
 //#define TIME_ROW 4
 
 #define COLLECTION_VIEW_TOP_BORDER 20

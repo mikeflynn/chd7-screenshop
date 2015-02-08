@@ -53,6 +53,8 @@
 		82A7E9741A86E11E008A1581 /* shadow-06.png in Resources */ = {isa = PBXBuildFile; fileRef = 82A7E9731A86E11E008A1581 /* shadow-06.png */; };
 		82ECAE681A86E5AE0007A664 /* fake-iphone-message.png in Resources */ = {isa = PBXBuildFile; fileRef = 82ECAE671A86E5AE0007A664 /* fake-iphone-message.png */; };
 		82ECAE6A1A86E8680007A664 /* fake-phone-for-app.png in Resources */ = {isa = PBXBuildFile; fileRef = 82ECAE691A86E8680007A664 /* fake-phone-for-app.png */; };
+		82ECAE6C1A86EEDC0007A664 /* screenshop-07.png in Resources */ = {isa = PBXBuildFile; fileRef = 82ECAE6B1A86EEDC0007A664 /* screenshop-07.png */; };
+		82ECAE6E1A86EF5D0007A664 /* nokia.png in Resources */ = {isa = PBXBuildFile; fileRef = 82ECAE6D1A86EF5D0007A664 /* nokia.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +130,8 @@
 		82A7E9731A86E11E008A1581 /* shadow-06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shadow-06.png"; sourceTree = "<group>"; };
 		82ECAE671A86E5AE0007A664 /* fake-iphone-message.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fake-iphone-message.png"; sourceTree = "<group>"; };
 		82ECAE691A86E8680007A664 /* fake-phone-for-app.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fake-phone-for-app.png"; sourceTree = "<group>"; };
+		82ECAE6B1A86EEDC0007A664 /* screenshop-07.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenshop-07.png"; sourceTree = "<group>"; };
+		82ECAE6D1A86EF5D0007A664 /* nokia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nokia.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +218,8 @@
 		82A7E91C1A85E716008A1581 /* photos */ = {
 			isa = PBXGroup;
 			children = (
+				82ECAE6D1A86EF5D0007A664 /* nokia.png */,
+				82ECAE6B1A86EEDC0007A664 /* screenshop-07.png */,
 				82ECAE691A86E8680007A664 /* fake-phone-for-app.png */,
 				82ECAE671A86E5AE0007A664 /* fake-iphone-message.png */,
 				823A089C1A86E20F00C7DB96 /* screenshop-03.png */,
@@ -372,6 +378,7 @@
 				023F06C51A869E4C003C6A2A /* carrier_tmobile.png in Resources */,
 				82A7E96C1A86E10A008A1581 /* screenshop-01.png in Resources */,
 				023F06C61A869E4C003C6A2A /* carrier_verizon.png in Resources */,
+				82ECAE6C1A86EEDC0007A664 /* screenshop-07.png in Resources */,
 				82A7E9051A85DE3E008A1581 /* LaunchScreen.xib in Resources */,
 				82A7E9231A85F638008A1581 /* ControlCollectionViewCell.xib in Resources */,
 				0250F2B81A86D63A00B92382 /* twitterNotification.png in Resources */,
@@ -390,6 +397,7 @@
 				023F06B11A86947D003C6A2A /* battery_full.png in Resources */,
 				023F06B51A86947D003C6A2A /* reception_4.png in Resources */,
 				0250F2B61A86D63A00B92382 /* okcNotification.png in Resources */,
+				82ECAE6E1A86EF5D0007A664 /* nokia.png in Resources */,
 				82ECAE6A1A86E8680007A664 /* fake-phone-for-app.png in Resources */,
 				82A7E9701A86E10A008A1581 /* shadow-06.png in Resources */,
 				0250F2B51A86D63A00B92382 /* gmailNotification.png in Resources */,
