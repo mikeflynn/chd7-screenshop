@@ -29,7 +29,6 @@
 
 @property NSInteger selectedNotificationIndex;
 
-
 @property UIView *carrierOverlay;
 
 @property UIImagePickerController *imagePickerController;
@@ -183,9 +182,9 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     
+    self.screenshotImageView.image = [info objectForKey:UIImagePickerControllerOriginalImage];
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     [picker dismissViewControllerAnimated:YES completion:nil];
-    self.screenshotImageView.image = [info objectForKey:UIImagePickerControllerOriginalImage];
 }
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker

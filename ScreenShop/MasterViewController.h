@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 
 #define BATTERY_NOT_SET -1
-#define NOTIFICATION_NOT_SET -1
-
 #define BATTERY_ROW 0
 #define RECEPTION_ROW 1
 #define CARRIER_ROW 2
