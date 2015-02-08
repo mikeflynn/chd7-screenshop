@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 
 #define BATTERY_NOT_SET -1
+#define NOTIFICATION_NOT_SET -1
 
 #define BATTERY_ROW 0
 #define RECEPTION_ROW 1
 #define CARRIER_ROW 2
 #define NOTIFICATION_ROW 3
-#define TIME_ROW 4
+//#define TIME_ROW 4
 
 #define COLLECTION_VIEW_TOP_BORDER 20
 #define COLLECTION_VIEW_SIDE_BORDER 20

@@ -40,6 +40,12 @@
 		82A7E9541A869B8B008A1581 /* SWActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A7E9531A869B8B008A1581 /* SWActionSheet.m */; };
 		82A7E9581A869BBA008A1581 /* DistancePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A7E9571A869BBA008A1581 /* DistancePickerView.m */; };
 		82A7E95A1A86ACD8008A1581 /* fade-iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 82A7E9591A86ACD8008A1581 /* fade-iphone.png */; };
+		82A7E95F1A86CCBE008A1581 /* screenshop-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 82A7E95B1A86CCBE008A1581 /* screenshop-01.png */; };
+		82A7E9601A86CCBE008A1581 /* screenshop-02.png in Resources */ = {isa = PBXBuildFile; fileRef = 82A7E95C1A86CCBE008A1581 /* screenshop-02.png */; };
+		82A7E9611A86CCBE008A1581 /* screenshop-03.png in Resources */ = {isa = PBXBuildFile; fileRef = 82A7E95D1A86CCBE008A1581 /* screenshop-03.png */; };
+		82A7E9621A86CCBE008A1581 /* screenshop-04.png in Resources */ = {isa = PBXBuildFile; fileRef = 82A7E95E1A86CCBE008A1581 /* screenshop-04.png */; };
+		82A7E9641A86CCC7008A1581 /* screenshop_logo-05.png in Resources */ = {isa = PBXBuildFile; fileRef = 82A7E9631A86CCC7008A1581 /* screenshop_logo-05.png */; };
+		82A7E9661A86CCCD008A1581 /* shadow-06.png in Resources */ = {isa = PBXBuildFile; fileRef = 82A7E9651A86CCCD008A1581 /* shadow-06.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +108,12 @@
 		82A7E9561A869BBA008A1581 /* DistancePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistancePickerView.h; sourceTree = "<group>"; };
 		82A7E9571A869BBA008A1581 /* DistancePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistancePickerView.m; sourceTree = "<group>"; };
 		82A7E9591A86ACD8008A1581 /* fade-iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fade-iphone.png"; sourceTree = "<group>"; };
+		82A7E95B1A86CCBE008A1581 /* screenshop-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenshop-01.png"; sourceTree = "<group>"; };
+		82A7E95C1A86CCBE008A1581 /* screenshop-02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenshop-02.png"; sourceTree = "<group>"; };
+		82A7E95D1A86CCBE008A1581 /* screenshop-03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenshop-03.png"; sourceTree = "<group>"; };
+		82A7E95E1A86CCBE008A1581 /* screenshop-04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenshop-04.png"; sourceTree = "<group>"; };
+		82A7E9631A86CCC7008A1581 /* screenshop_logo-05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenshop_logo-05.png"; sourceTree = "<group>"; };
+		82A7E9651A86CCCD008A1581 /* shadow-06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shadow-06.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +200,12 @@
 		82A7E91C1A85E716008A1581 /* photos */ = {
 			isa = PBXGroup;
 			children = (
+				82A7E9651A86CCCD008A1581 /* shadow-06.png */,
+				82A7E9631A86CCC7008A1581 /* screenshop_logo-05.png */,
+				82A7E95B1A86CCBE008A1581 /* screenshop-01.png */,
+				82A7E95C1A86CCBE008A1581 /* screenshop-02.png */,
+				82A7E95D1A86CCBE008A1581 /* screenshop-03.png */,
+				82A7E95E1A86CCBE008A1581 /* screenshop-04.png */,
 				023F06B71A869E4C003C6A2A /* carrier_att.png */,
 				023F06B81A869E4C003C6A2A /* carrier_bell.png */,
 				023F06B91A869E4C003C6A2A /* carrier_boost.png */,
@@ -324,10 +342,15 @@
 				023F06C11A869E4C003C6A2A /* carrier_boost.png in Resources */,
 				023F06C21A869E4C003C6A2A /* carrier_cia.png in Resources */,
 				82A7E9001A85DE3E008A1581 /* Main.storyboard in Resources */,
+				82A7E9611A86CCBE008A1581 /* screenshop-03.png in Resources */,
 				023F06B21A86947D003C6A2A /* reception_1.png in Resources */,
 				82A7E95A1A86ACD8008A1581 /* fade-iphone.png in Resources */,
 				023F06BF1A869E4C003C6A2A /* carrier_att.png in Resources */,
+				82A7E9621A86CCBE008A1581 /* screenshop-04.png in Resources */,
+				82A7E9641A86CCC7008A1581 /* screenshop_logo-05.png in Resources */,
 				023F06C51A869E4C003C6A2A /* carrier_tmobile.png in Resources */,
+				82A7E9601A86CCBE008A1581 /* screenshop-02.png in Resources */,
+				82A7E95F1A86CCBE008A1581 /* screenshop-01.png in Resources */,
 				023F06C61A869E4C003C6A2A /* carrier_verizon.png in Resources */,
 				82A7E9051A85DE3E008A1581 /* LaunchScreen.xib in Resources */,
 				82A7E9231A85F638008A1581 /* ControlCollectionViewCell.xib in Resources */,
@@ -335,6 +358,7 @@
 				023F06B61A86947D003C6A2A /* reception_5.png in Resources */,
 				023F06B31A86947D003C6A2A /* reception_2.png in Resources */,
 				023F06B41A86947D003C6A2A /* reception_3.png in Resources */,
+				82A7E9661A86CCCD008A1581 /* shadow-06.png in Resources */,
 				023F06C31A869E4C003C6A2A /* carrier_metropcs.png in Resources */,
 				023F06C41A869E4C003C6A2A /* carrier_sprint.png in Resources */,
 				82A7E9021A85DE3E008A1581 /* Images.xcassets in Resources */,

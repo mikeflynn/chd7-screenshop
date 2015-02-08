@@ -27,6 +27,8 @@
 @property NSMutableArray *notificationImages;
 @property NSString *selectedNotificationName;
 
+@property NSInteger selectedNotificationIndex;
+
 
 @property UIView *receptionOverlay;
 @property UIView *carrierOverlay;
@@ -61,8 +63,7 @@
     
     self.navigationController.navigationBarHidden = YES;
     self.batteryLevel = BATTERY_NOT_SET;
-    
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    self.selectedNotificationIndex = 0;
     
     [self.screenshotImageView addSubview:self.batteryOverlay];
     
@@ -105,6 +106,7 @@
 
 -(void)setupCollectionView {
     
+    /*
    [self.collectionView registerClass:[ControlCollectionViewCell class] forCellWithReuseIdentifier:@"cellIdentifier"];
     
     
@@ -113,12 +115,13 @@
     [flowLayout setMinimumInteritemSpacing:0.0f];
     [flowLayout setMinimumLineSpacing:0.0f];
     
-    CGFloat itemWidth = self.collectionView.frame.size.width - 2 * COLLECTION_VIEW_SIDE_BORDER;
-    CGFloat itemHeight = self.collectionView.frame.size.height - 2 * COLLECTION_VIEW_TOP_BORDER;
+    //CGFloat itemWidth = self.collectionView.frame.size.width - 2 * COLLECTION_VIEW_SIDE_BORDER;
+    //CGFloat itemHeight = self.collectionView.frame.size.height - 2 * COLLECTION_VIEW_TOP_BORDER;
     
-    [flowLayout setItemSize:CGSizeMake(itemWidth, itemHeight)];
+    //[flowLayout setItemSize:CGSizeMake(itemWidth, itemHeight)];
     [self.collectionView setPagingEnabled:YES];
-    [self.collectionView setCollectionViewLayout:flowLayout];
+    [self.collectionView setCollectionViewLayout:flowLayout];*/
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -179,12 +182,15 @@
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
     [picker dismissViewControllerAnimated:YES completion:nil];
     self.screenshotImageView.image = [info objectForKey:UIImagePickerControllerOriginalImage];
 }
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -249,27 +255,33 @@
 -(IBAction)randomNotificationAdded:(id)sender {
     
     
-    NSString *prevnotification = self.selectedNotificationName;
+   // NSString *prevnotification = self.selectedNotificationName;
     
-    int randomIndex = (int)arc4random_uniform(100);
-    NSLog(@"Random index: %i", randomIndex);
+    //int randomIndex = (int)arc4random_uniform(100);
+    //NSLog(@"Random index: %i", randomIndex);
     
-    randomIndex = randomIndex % self.notificationImages.count;
+    //randomIndex = randomIndex % self.notificationImages.count;
     
-    if (randomIndex == self.notificationImages.count) {
-        randomIndex--;
+    if (self.selectedNotificationIndex == self.notificationImages.count) {
+        self.selectedNotificationIndex = 0;
+        [self removeNotificationFromScreenshot];
     }
-    
-    self.selectedNotificationName = (NSString *)[self.notificationImages objectAtIndex:randomIndex];
+    else {
+        self.selectedNotificationName = (NSString *)[self.notificationImages objectAtIndex:self.selectedNotificationIndex];
+        NSLog(@"Selected notification: %@", self.selectedNotificationName);
+        [self addNewNotificationToScreenshot];
+        
+        self.selectedNotificationIndex++;
+    }
+    /*
     [self.notificationImages removeObjectAtIndex:randomIndex];
     
     if (prevnotification) {
         [self.notificationImages addObject:prevnotification];
-    }
+    }*/
     
-    NSLog(@"Selected notification: %@", self.selectedNotificationName);
     
-    [self addNewNotificationToScreenshot];
+    
     
 }
 -(IBAction)randomNotificationRemoved:(id)sender {
@@ -377,13 +389,36 @@
     return 1;
 }
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 5;
+    return 4;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    UICollectionViewCell *cell;
+    UICollectionViewCell *cell = (UICollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"pictureCell" forIndexPath:indexPath];
+    UIImageView *imageView = [cell viewWithTag:1];
     
+    NSString *imageName;
+    
+    switch (indexPath.row) {
+        case BATTERY_ROW:
+            imageName = @"screenshop-01.png";
+            break;
+        case RECEPTION_ROW:
+            imageName = @"screenshop-02.png";
+            break;
+        case NOTIFICATION_ROW:
+            imageName = @"screenshop-04.png";
+            break;
+        case CARRIER_ROW:
+            imageName = @"screenshop-03.png";
+            break;
+        default:
+            break;
+    }
+    
+    UIImage *image = [UIImage imageNamed:imageName];
+    imageView.image = image;
+    /*
     switch (indexPath.row) {
         case BATTERY_ROW:
             cell = (UICollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"batteryCell" forIndexPath:indexPath];
@@ -404,9 +439,51 @@
         default:
             break;
     }
-    
+    */
     
     return cell;
+}
+
+-(void)showNotificationPicker:(id)sender {
+    
+    [self randomNotificationAdded:sender];
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    
+    switch (indexPath.row) {
+        case BATTERY_ROW:
+            [self showBatteryPicker:cell];
+            break;
+        case CARRIER_ROW:
+            [self showCarrierPicker:cell];
+            break;
+        case NOTIFICATION_ROW:
+            [self showNotificationPicker:cell];
+            break;
+        case RECEPTION_ROW:
+            [self showReceptionPicker:cell];
+            break;
+        default:
+            break;
+    }
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    return 0.0;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    return 0.0;
+}
+
+// Layout: Set Edges
+- (UIEdgeInsets)collectionView:
+(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    // return UIEdgeInsetsMake(0,8,0,8);  // top, left, bottom, right
+    return UIEdgeInsetsMake(0,0,0,0);  // top, left, bottom, right
 }
 
 -(void)configureReceptionCell:(UICollectionViewCell *)cell {
@@ -462,27 +539,27 @@
         }
     }
     
-    [ActionSheetStringPicker showPickerWithTitle:@"Select carrier" rows:self.carriers initialSelection:selectedIndex doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+    [ActionSheetStringPicker showPickerWithTitle:@"Select Carrier" rows:self.carriers initialSelection:selectedIndex doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
 
         self.carrier = (selectedIndex == 0) ? nil : [self.carriers objectAtIndex:selectedIndex];
         NSLog(@"new carrier: %@", self.carrier);
         [self updateCarrierOnScreenshot];
     } cancelBlock:^(ActionSheetStringPicker *picker) {
         
-    } origin:self.carrierButton];
+    } origin:sender];
     
 }
 
 -(IBAction)showReceptionPicker:(id)sender {
     
-    [ActionSheetStringPicker showPickerWithTitle:@"Select reception level" rows:@[@"No bars", @"1 bar", @"2 bars", @"3 bars", @"Full bars"] initialSelection:self.receptionLevel doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+    [ActionSheetStringPicker showPickerWithTitle:@"Select Reception Level" rows:@[@"No bars", @"1 bar", @"2 bars", @"3 bars", @"Full bars"] initialSelection:self.receptionLevel doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
         self.receptionLevel = selectedIndex;
         NSLog(@"new reception level: %li", self.receptionLevel);
         
         [self updateReceptionOnScreenshot];
     } cancelBlock:^(ActionSheetStringPicker *picker) {
         
-    } origin:self.carrierButton];
+    } origin:sender];
     
 }
 
@@ -494,7 +571,7 @@
         
     } cancelBlock:^(ActionSheetDatePicker *picker) {
         
-    } origin:self.timeButton];
+    } origin:sender];
     
 }
 -(IBAction)showBatteryPicker:(id)sender {
@@ -511,7 +588,7 @@
         selectedIndex = 2;
     }
     
-    [ActionSheetStringPicker showPickerWithTitle:@"Select battery level" rows:@[@"Unchanged", @"Empty", @"Full"]initialSelection:selectedIndex doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+    [ActionSheetStringPicker showPickerWithTitle:@"Select Battery Level" rows:@[@"Unchanged", @"Empty", @"Full"]initialSelection:selectedIndex doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
         
         if (selectedIndex != 0 || self.batteryLevel != BATTERY_NOT_SET) {
             
@@ -529,7 +606,7 @@
         }
     } cancelBlock:^(ActionSheetStringPicker *picker) {
         
-    } origin:self.carrierButton];
+    } origin:sender];
     
 }
 
