@@ -32,7 +32,7 @@
 
 @property UIImage *backupImage;
 
-@property UIView *carrierOverlay;
+//@property UIView *carrierOverlay;
 
 @property UIImagePickerController *imagePickerController;
 
@@ -69,7 +69,7 @@
     [self.screenshotImageView addSubview:self.batteryOverlay];
     [self.screenshotImageView addSubview:self.receptionOverlay];
     [self.screenshotImageView addSubview:self.notificationOverlay];
-    [self.screenshotImageView addSubview:self.carrierOverlay];
+    [self.screenshotImageView addSubview:self.carrierView];
     
     self.carriers = @[@"Unchanged",@"AT&T", @"Verizon", @"T-Mobile", @"Sprint", @"Boost", @"Metro PCS", @"Vodafone UK (+)", @"Bell Canada (+)", @"Telecom NZ (+)", @"中国移动 (+)"];
 }
@@ -587,13 +587,16 @@
         [self updateReceptionOnScreenshot];
         
         if (!self.carrier) {
-            self.carrier = @"T-Mobile";
+            self.carrier = @"Metro PCS";
         }
         
         if (selectedIndex == 5)
             self.signalStrength = @"LTE";
-        else if (selectedIndex == 6)
-            self.signalStrength = @"EDGE";
+        else if (selectedIndex == 6){
+            self.signalStrength = @"E";
+            self.receptionLevel = 1;
+            [self updateReceptionOnScreenshot];
+        }
         else if (selectedIndex == 7)
             self.signalStrength = @"3G";
         else if (selectedIndex == 8)
@@ -604,8 +607,9 @@
             self.signalStrength = @"7G";
         else if (selectedIndex == 11)
             self.signalStrength = @"WARREN G";
+        /*
         else
-            self.signalStrength = @"4G";
+            self.signalStrength = @"4G";*/
         
         [self updateCarrierOnScreenshot];
         
