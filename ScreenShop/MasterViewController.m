@@ -198,7 +198,7 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark - IBActions
+#pragma mark - Responding to actions
 
 -(void)batteryLevelAdjusted:(id)sender;{
     
@@ -242,6 +242,7 @@
     [self updateCarrierOnScreenshot];
     
 }
+
 
 -(void)timeUpdated:(NSDate *)newDate {
     
@@ -305,6 +306,20 @@
     
 }
 
+-(void)showNokia{
+    
+    //self.carrier = nil;
+    self.carrierView.hidden = YES;
+    self.carrierLabel.hidden = YES;
+    self.batteryOverlay.hidden = YES;
+    self.receptionOverlay.hidden = YES;
+    self.notificationOverlay.hidden = YES;
+    self.screenshotImageView.image = [UIImage imageNamed:@"nokia2.png"];
+    
+}
+
+#pragma mark - Updating Screenshot
+
 -(void)updateBatteryLevelOnScreenshot {
     
     if(self.batteryLevel == 0) {
@@ -324,8 +339,9 @@
 
     if (self.carrier){
         
+        NSString *carrier = ([self.carrier isEqualToString:@"Bell Canada"]) ? @"Bell" : self.carrier;
         self.carrierView.hidden = NO;
-        self.carrierLabel.text = [NSString stringWithFormat:@"%@ %@", self.carrier, self.signalStrength];
+        self.carrierLabel.text = [NSString stringWithFormat:@"%@  %@", carrier, self.signalStrength];
         
     }
     else {
@@ -365,10 +381,12 @@
         //self.receptionOverlay.image = nil;
     }
 }
+
 -(void)updateTimeOnScreenshot {
     //use self.timeString for the string value
-    
+    NSLog(@"updateTimeOnScreenshot called");
 }
+
 -(void)addNewNotificationToScreenshot{
     //self.selectedNotificationName is the image name
     
@@ -380,10 +398,11 @@
     //self.selectedNotificationName is the current image name
 
     self.notificationOverlay.hidden = YES;
+    self.carrierView.hidden = NO;
 }
 
 
-#pragma mark - Table View
+#pragma mark - Collection View
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return 1;
@@ -391,7 +410,6 @@
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return 6;
 }
-
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     UICollectionViewCell *cell = (UICollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"pictureCell" forIndexPath:indexPath];
@@ -424,29 +442,7 @@
     
     UIImage *image = [UIImage imageNamed:imageName];
     imageView.image = image;
-    /*
-    switch (indexPath.row) {
-        case BATTERY_ROW:
-            cell = (UICollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"batteryCell" forIndexPath:indexPath];
-            [self configureBatteryCell:cell];
-            break;
-        case RECEPTION_ROW:
-            cell = (UICollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"receptionCell" forIndexPath:indexPath];
-            break;
-        case NOTIFICATION_ROW:
-            cell = (UICollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"notificationCell" forIndexPath:indexPath];
-            break;
-        case TIME_ROW:
-            cell = (UICollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"timeCell" forIndexPath:indexPath];
-            break;
-        case CARRIER_ROW:
-            cell = (UICollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"carrierCell" forIndexPath:indexPath];
-            break;
-        default:
-            break;
-    }
-    */
-    
+
     return cell;
 }
 
@@ -483,17 +479,6 @@
     }
 }
 
--(void)showNokia{
-    
-    //self.carrier = nil;
-    self.carrierView.hidden = YES;
-    self.carrierLabel.hidden = YES;
-    self.batteryOverlay.hidden = YES;
-    self.receptionOverlay.hidden = YES;
-    self.notificationOverlay.hidden = YES;
-    self.screenshotImageView.image = [UIImage imageNamed:@"nokia.png"];
-    
-}
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
     return 0.0;
@@ -548,7 +533,7 @@
         self.batteryLabel.text = [NSString stringWithFormat:@"Battery: %li%%", self.batteryLevel];
     }*/
 }
-#pragma mark ActionSheets -
+#pragma mark - ActionSheets
 
 -(IBAction)showCarrierPicker:(id)sender {
     

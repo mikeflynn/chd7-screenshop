@@ -57,6 +57,11 @@
 		82ECAE6E1A86EF5D0007A664 /* nokia.png in Resources */ = {isa = PBXBuildFile; fileRef = 82ECAE6D1A86EF5D0007A664 /* nokia.png */; };
 		82ECAE701A8805400007A664 /* screenshop-08.png in Resources */ = {isa = PBXBuildFile; fileRef = 82ECAE6F1A8805400007A664 /* screenshop-08.png */; };
 		82ECAE721A88277C0007A664 /* splashscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 82ECAE711A88277C0007A664 /* splashscreen.png */; };
+		82ECAE771A8845730007A664 /* reception_white_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 82ECAE731A8845730007A664 /* reception_white_4.png */; };
+		82ECAE781A8845730007A664 /* reception_white_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 82ECAE741A8845730007A664 /* reception_white_2.png */; };
+		82ECAE791A8845730007A664 /* reception_white_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 82ECAE751A8845730007A664 /* reception_white_1.png */; };
+		82ECAE7A1A8845730007A664 /* reception_white_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 82ECAE761A8845730007A664 /* reception_white_3.png */; };
+		82ECAE7C1A8854B60007A664 /* nokia2.png in Resources */ = {isa = PBXBuildFile; fileRef = 82ECAE7B1A8854B60007A664 /* nokia2.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,6 +141,11 @@
 		82ECAE6D1A86EF5D0007A664 /* nokia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nokia.png; sourceTree = "<group>"; };
 		82ECAE6F1A8805400007A664 /* screenshop-08.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenshop-08.png"; sourceTree = "<group>"; };
 		82ECAE711A88277C0007A664 /* splashscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splashscreen.png; sourceTree = "<group>"; };
+		82ECAE731A8845730007A664 /* reception_white_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reception_white_4.png; sourceTree = "<group>"; };
+		82ECAE741A8845730007A664 /* reception_white_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reception_white_2.png; sourceTree = "<group>"; };
+		82ECAE751A8845730007A664 /* reception_white_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reception_white_1.png; sourceTree = "<group>"; };
+		82ECAE761A8845730007A664 /* reception_white_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reception_white_3.png; sourceTree = "<group>"; };
+		82ECAE7B1A8854B60007A664 /* nokia2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nokia2.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				82ECAE6F1A8805400007A664 /* screenshop-08.png */,
+				82ECAE7B1A8854B60007A664 /* nokia2.png */,
 				82ECAE6D1A86EF5D0007A664 /* nokia.png */,
 				82ECAE6B1A86EEDC0007A664 /* screenshop-07.png */,
 				82ECAE691A86E8680007A664 /* fake-phone-for-app.png */,
@@ -253,6 +264,10 @@
 				023F06AE1A86947D003C6A2A /* reception_3.png */,
 				023F06AF1A86947D003C6A2A /* reception_4.png */,
 				023F06B01A86947D003C6A2A /* reception_5.png */,
+				82ECAE731A8845730007A664 /* reception_white_4.png */,
+				82ECAE741A8845730007A664 /* reception_white_2.png */,
+				82ECAE751A8845730007A664 /* reception_white_1.png */,
+				82ECAE761A8845730007A664 /* reception_white_3.png */,
 				82ECAE711A88277C0007A664 /* splashscreen.png */,
 			);
 			name = photos;
@@ -341,6 +356,7 @@
 				TargetAttributes = {
 					82A7E8ED1A85DE3D008A1581 = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = EE36KJKXWN;
 					};
 					82A7E9091A85DE3E008A1581 = {
 						CreatedOnToolsVersion = 6.1;
@@ -372,6 +388,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82ECAE781A8845730007A664 /* reception_white_2.png in Resources */,
 				023F06C11A869E4C003C6A2A /* carrier_boost.png in Resources */,
 				82ECAE681A86E5AE0007A664 /* fake-iphone-message.png in Resources */,
 				023F06C21A869E4C003C6A2A /* carrier_cia.png in Resources */,
@@ -394,7 +411,10 @@
 				823A089D1A86E20F00C7DB96 /* screenshop-03.png in Resources */,
 				82A7E9721A86E118008A1581 /* screenshop_logo-05.png in Resources */,
 				82A7E9741A86E11E008A1581 /* shadow-06.png in Resources */,
+				82ECAE7C1A8854B60007A664 /* nokia2.png in Resources */,
+				82ECAE771A8845730007A664 /* reception_white_4.png in Resources */,
 				023F06B61A86947D003C6A2A /* reception_5.png in Resources */,
+				82ECAE791A8845730007A664 /* reception_white_1.png in Resources */,
 				023F06B31A86947D003C6A2A /* reception_2.png in Resources */,
 				0250F2B71A86D63A00B92382 /* tinderNotification.png in Resources */,
 				82A7E96F1A86E10A008A1581 /* screenshop-04.png in Resources */,
@@ -407,6 +427,7 @@
 				0250F2B61A86D63A00B92382 /* okcNotification.png in Resources */,
 				82ECAE6E1A86EF5D0007A664 /* nokia.png in Resources */,
 				82ECAE6A1A86E8680007A664 /* fake-phone-for-app.png in Resources */,
+				82ECAE7A1A8845730007A664 /* reception_white_3.png in Resources */,
 				82A7E9701A86E10A008A1581 /* shadow-06.png in Resources */,
 				0250F2B51A86D63A00B92382 /* gmailNotification.png in Resources */,
 			);

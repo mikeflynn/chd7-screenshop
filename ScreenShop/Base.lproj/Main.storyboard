@@ -98,7 +98,7 @@
                                         <rect key="frame" x="-1" y="0.0" width="109" height="21"/>
                                         <color key="backgroundColor" red="0.96862751245498657" green="0.96862751245498657" blue="0.96862751245498657" alpha="1" colorSpace="deviceRGB"/>
                                         <attributedString key="attributedText">
-                                            <fragment content="Metro PCS  3G">
+                                            <fragment content="Metro PCS  E">
                                                 <attributes>
                                                     <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <font key="NSFont" size="12" name="HelveticaNeue"/>
