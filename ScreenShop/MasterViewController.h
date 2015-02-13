@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ActionSheetCustomPicker.h"
 
 #define BATTERY_NOT_SET -1
 #define BATTERY_ROW 0
@@ -20,7 +21,7 @@
 #define COLLECTION_VIEW_TOP_BORDER 20
 #define COLLECTION_VIEW_SIDE_BORDER 20
 
-@interface MasterViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface MasterViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ActionSheetCustomPickerDelegate>
 
 -(IBAction)save:(id)sender;
 -(IBAction)changePhotoButtonPushed:(id)sender;

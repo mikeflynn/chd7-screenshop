@@ -11,6 +11,7 @@
 
 #import "ActionSheetStringPicker.h"
 #import "ActionSheetDatePicker.h"
+#import "ActionSheetCustomPicker.h"
 
 #import <Photos/Photos.h>
 
@@ -564,6 +565,12 @@
 
 -(IBAction)showReceptionPicker:(id)sender {
     
+    ActionSheetCustomPicker *receptionPicker = [[ActionSheetCustomPicker alloc] initWithTitle:@"Select Reception Level" delegate:self showCancelButton:YES origin:sender initialSelections:@[self.carrier, [NSString stringWithFormat:@"%li", self.receptionLevel]]];
+    
+    [receptionPicker showActionSheetPicker];
+    
+    //[ActionSheetCustomPicker showPickerWithTitle:@"Select Reception Level" delegate:self showCancelButton:YES origin:sender];
+    /*
     [ActionSheetStringPicker showPickerWithTitle:@"Select Reception Level" rows:@[@"No change", @"1 bar", @"2 bars", @"3 bars", @"4 bars", @"4 bars + LTE", @"EDGE", @"3G", @"4G", @"LTE", @"7G", @"WARREN G (+)"] initialSelection:self.receptionLevel doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
         
         self.receptionLevel = (selectedIndex < 4) ? selectedIndex : 4;
@@ -592,15 +599,13 @@
             self.signalStrength = @"7G";
         else if (selectedIndex == 11)
             self.signalStrength = @"WARREN G";
-        /*
-        else
-            self.signalStrength = @"4G";*/
         
         [self updateCarrierOnScreenshot];
         
     } cancelBlock:^(ActionSheetStringPicker *picker) {
         
     } origin:sender];
+     */
     
 }
 
@@ -651,6 +656,11 @@
     
 }
 
+-(void)actionSheetPicker:(AbstractActionSheetPicker *)actionSheetPicker configurePickerView:(UIPickerView *)pickerView {
+    
+    
+}
+/*
 
 #pragma mark - UIPickerView
 
@@ -672,4 +682,5 @@
     self.carrier = [self.carriers objectAtIndex:row];
     [self updateCarrierOnScreenshot];
 }
+ */
 @end
