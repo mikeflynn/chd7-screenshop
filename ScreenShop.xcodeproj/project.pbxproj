@@ -48,7 +48,6 @@
 		82A7E96C1A86E10A008A1581 /* screenshop-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 82A7E9671A86E10A008A1581 /* screenshop-01.png */; };
 		82A7E96D1A86E10A008A1581 /* screenshop-02.png in Resources */ = {isa = PBXBuildFile; fileRef = 82A7E9681A86E10A008A1581 /* screenshop-02.png */; };
 		82A7E96F1A86E10A008A1581 /* screenshop-04.png in Resources */ = {isa = PBXBuildFile; fileRef = 82A7E96A1A86E10A008A1581 /* screenshop-04.png */; };
-		82A7E9701A86E10A008A1581 /* shadow-06.png in Resources */ = {isa = PBXBuildFile; fileRef = 82A7E96B1A86E10A008A1581 /* shadow-06.png */; };
 		82A7E9721A86E118008A1581 /* screenshop_logo-05.png in Resources */ = {isa = PBXBuildFile; fileRef = 82A7E9711A86E118008A1581 /* screenshop_logo-05.png */; };
 		82A7E9741A86E11E008A1581 /* shadow-06.png in Resources */ = {isa = PBXBuildFile; fileRef = 82A7E9731A86E11E008A1581 /* shadow-06.png */; };
 		82ECAE681A86E5AE0007A664 /* fake-iphone-message.png in Resources */ = {isa = PBXBuildFile; fileRef = 82ECAE671A86E5AE0007A664 /* fake-iphone-message.png */; };
@@ -132,7 +131,6 @@
 		82A7E9671A86E10A008A1581 /* screenshop-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenshop-01.png"; sourceTree = "<group>"; };
 		82A7E9681A86E10A008A1581 /* screenshop-02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenshop-02.png"; sourceTree = "<group>"; };
 		82A7E96A1A86E10A008A1581 /* screenshop-04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenshop-04.png"; sourceTree = "<group>"; };
-		82A7E96B1A86E10A008A1581 /* shadow-06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shadow-06.png"; sourceTree = "<group>"; };
 		82A7E9711A86E118008A1581 /* screenshop_logo-05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenshop_logo-05.png"; sourceTree = "<group>"; };
 		82A7E9731A86E11E008A1581 /* shadow-06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shadow-06.png"; sourceTree = "<group>"; };
 		82ECAE671A86E5AE0007A664 /* fake-iphone-message.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fake-iphone-message.png"; sourceTree = "<group>"; };
@@ -244,7 +242,6 @@
 				82A7E9671A86E10A008A1581 /* screenshop-01.png */,
 				82A7E9681A86E10A008A1581 /* screenshop-02.png */,
 				82A7E96A1A86E10A008A1581 /* screenshop-04.png */,
-				82A7E96B1A86E10A008A1581 /* shadow-06.png */,
 				0250F2B11A86D63A00B92382 /* gmailNotification.png */,
 				0250F2B21A86D63A00B92382 /* okcNotification.png */,
 				0250F2B31A86D63A00B92382 /* tinderNotification.png */,
@@ -351,7 +348,7 @@
 		82A7E8E61A85DE3D008A1581 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0620;
 				ORGANIZATIONNAME = ScreenshopTeam;
 				TargetAttributes = {
 					82A7E8ED1A85DE3D008A1581 = {
@@ -428,7 +425,6 @@
 				82ECAE6E1A86EF5D0007A664 /* nokia.png in Resources */,
 				82ECAE6A1A86E8680007A664 /* fake-phone-for-app.png in Resources */,
 				82ECAE7A1A8845730007A664 /* reception_white_3.png in Resources */,
-				82A7E9701A86E10A008A1581 /* shadow-06.png in Resources */,
 				0250F2B51A86D63A00B92382 /* gmailNotification.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

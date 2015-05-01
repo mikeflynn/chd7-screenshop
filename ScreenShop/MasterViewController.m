@@ -20,14 +20,18 @@
 
 @property NSInteger batteryLevel;
 @property NSInteger receptionLevel;
-
 @property NSString *timeString;
+
 @property NSString *carrier;
 @property NSArray *carriers;
+@property NSString *carrierSpeed;
+@property NSArray *carrierSpeeds;
+
+@property NSString *signalStrength;
+@property NSArray *signalStrengths;
 
 @property NSMutableArray *notificationImages;
 @property NSString *selectedNotificationName;
-@property NSString *signalStrength;
 
 @property NSInteger selectedNotificationIndex;
 
@@ -58,21 +62,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupCollectionView];
+    //[self setupCollectionView];
     [self setupNotificationImages];
     [self setDefaultImage];
     
     self.navigationController.navigationBarHidden = YES;
     self.batteryLevel = BATTERY_NOT_SET;
     self.selectedNotificationIndex = 0;
-    self.signalStrength = @"4G";
+    self.carrierSpeed = @"4G";
     
     [self.screenshotImageView addSubview:self.batteryOverlay];
     [self.screenshotImageView addSubview:self.receptionOverlay];
     [self.screenshotImageView addSubview:self.notificationOverlay];
     [self.screenshotImageView addSubview:self.carrierView];
     
-    self.carriers = @[@"Unchanged",@"AT&T", @"Verizon", @"T-Mobile", @"Sprint", @"Boost", @"Metro PCS", @"Vodafone UK (+)", @"Bell Canada (+)", @"Telecom NZ (+)", @"中国移动 (+)"];
+    self.carriers = @[@"No change",@"AT&T", @"Verizon", @"T-Mobile", @"Sprint", @"Boost", @"Metro PCS", @"Vodafone UK (+)", @"Bell Canada (+)", @"Telecom NZ (+)", @"中国移动 (+)"];
+    self.carrierSpeeds = @[@"No change", @"EDGE", @"3G", @"4G", @"4G LTE", @"7G", @"Warren G"];
+    self.signalStrengths = @[@"No bars", @"1 bar", @"3 bars", @"4 bars", @"5 bars"];
 }
 
 -(BOOL)prefersStatusBarHidden {
@@ -109,30 +115,6 @@
                                             }];
 }
 
--(void)setupCollectionView {
-    
-    /*
-   [self.collectionView registerClass:[ControlCollectionViewCell class] forCellWithReuseIdentifier:@"cellIdentifier"];
-    
-    
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
-    [flowLayout setMinimumInteritemSpacing:0.0f];
-    [flowLayout setMinimumLineSpacing:0.0f];
-    
-    //CGFloat itemWidth = self.collectionView.frame.size.width - 2 * COLLECTION_VIEW_SIDE_BORDER;
-    //CGFloat itemHeight = self.collectionView.frame.size.height - 2 * COLLECTION_VIEW_TOP_BORDER;
-    
-    //[flowLayout setItemSize:CGSizeMake(itemWidth, itemHeight)];
-    [self.collectionView setPagingEnabled:YES];
-    [self.collectionView setCollectionViewLayout:flowLayout];*/
-    
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 #pragma mark - Photos
 
@@ -342,7 +324,7 @@
         
         NSString *carrier = ([self.carrier isEqualToString:@"Bell Canada"]) ? @"Bell" : self.carrier;
         self.carrierView.hidden = NO;
-        self.carrierLabel.text = [NSString stringWithFormat:@"%@  %@", carrier, self.signalStrength];
+        self.carrierLabel.text = [NSString stringWithFormat:@"%@  %@", carrier, self.carrierSpeed];
         
     }
     else {
@@ -371,6 +353,9 @@
 }
 
 -(void)updateReceptionOnScreenshot {
+    
+    NSLog(@"updateReceptionOnScreenshot");
+    
     //use self.receptionLevel for value
     if(self.receptionLevel == -1) {
         self.receptionOverlay.hidden = YES;
@@ -538,6 +523,13 @@
 
 -(IBAction)showCarrierPicker:(id)sender {
     
+    ActionSheetCustomPicker *receptionPicker = [[ActionSheetCustomPicker alloc] initWithTitle:@"Pick Carrier and Speed" delegate:self showCancelButton:YES origin:sender];
+    //sender initialSelections:@[self.carrier, [NSString stringWithFormat:@"%li", self.receptionLevel]]
+    //receptionPicker.pickerView.tag = CARRIER_ROW;
+    //receptionPicker.delegate = self;
+    [receptionPicker showActionSheetPicker];
+    
+    /*
     int selectedIndex = 0;
     
     if (self.carrier) {
@@ -559,53 +551,57 @@
         [self updateCarrierOnScreenshot];
     } cancelBlock:^(ActionSheetStringPicker *picker) {
         
-    } origin:sender];
+    } origin:sender];*/
     
 }
 
 -(IBAction)showReceptionPicker:(id)sender {
     
-    ActionSheetCustomPicker *receptionPicker = [[ActionSheetCustomPicker alloc] initWithTitle:@"Select Reception Level" delegate:self showCancelButton:YES origin:sender initialSelections:@[self.carrier, [NSString stringWithFormat:@"%li", self.receptionLevel]]];
+    /*
+    ActionSheetCustomPicker *receptionPicker = [[ActionSheetCustomPicker alloc] initWithTitle:@"Select Reception Level" delegate:self showCancelButton:YES origin:sender];
+    //sender initialSelections:@[self.carrier, [NSString stringWithFormat:@"%li", self.receptionLevel]]
+    receptionPicker.delegate = self;
     
-    [receptionPicker showActionSheetPicker];
+    [receptionPicker showActionSheetPicker];*/
     
     //[ActionSheetCustomPicker showPickerWithTitle:@"Select Reception Level" delegate:self showCancelButton:YES origin:sender];
-    /*
-    [ActionSheetStringPicker showPickerWithTitle:@"Select Reception Level" rows:@[@"No change", @"1 bar", @"2 bars", @"3 bars", @"4 bars", @"4 bars + LTE", @"EDGE", @"3G", @"4G", @"LTE", @"7G", @"WARREN G (+)"] initialSelection:self.receptionLevel doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+    
+    [ActionSheetStringPicker showPickerWithTitle:@"Select Reception Level" rows:@[@"No change", @"1 bar", @"2 bars", @"3 bars", @"4 bars"] initialSelection:self.receptionLevel doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
         
         self.receptionLevel = (selectedIndex < 4) ? selectedIndex : 4;
         NSLog(@"new reception level: %li", self.receptionLevel);
         
         [self updateReceptionOnScreenshot];
         
+        /*
         if (!self.carrier) {
             self.carrier = @"Metro PCS";
         }
         
         if (selectedIndex == 5)
-            self.signalStrength = @"LTE";
+            self.carrierSpeed = @"LTE";
         else if (selectedIndex == 6){
-            self.signalStrength = @"E";
+            self.carrierSpeed = @"E";
             self.receptionLevel = 1;
             [self updateReceptionOnScreenshot];
         }
         else if (selectedIndex == 7)
-            self.signalStrength = @"3G";
+            self.carrierSpeed = @"3G";
         else if (selectedIndex == 8)
-            self.signalStrength = @"4G";
+            self.carrierSpeed = @"4G";
         else if (selectedIndex == 9)
-            self.signalStrength = @"LTE";
+            self.carrierSpeed = @"LTE";
         else if (selectedIndex == 10)
-            self.signalStrength = @"7G";
+            self.carrierSpeed = @"7G";
         else if (selectedIndex == 11)
-            self.signalStrength = @"WARREN G";
-        
+            self.carrierSpeed = @"WARREN G";
         [self updateCarrierOnScreenshot];
+         */
+        
         
     } cancelBlock:^(ActionSheetStringPicker *picker) {
         
     } origin:sender];
-     */
     
 }
 
@@ -655,32 +651,179 @@
     } origin:sender];
     
 }
-
+/*
 -(void)actionSheetPicker:(AbstractActionSheetPicker *)actionSheetPicker configurePickerView:(UIPickerView *)pickerView {
     
+    NSLog(@"Configure picker view");
     
 }
+*/
+
 /*
+- (void)actionSheetPickerDidSucceed:(AbstractActionSheetPicker *)actionSheetPicker origin:(id)origin
+{
+    
+    NSString *resultMessage;
+    if (!self.selectedKey && !self.selectedScale)
+    {
+        
+        resultMessage = [NSString stringWithFormat:@"Nothing is selected, inital selections: %@, %@",
+                         notesToDisplayForKey[(NSUInteger) [(UIPickerView *) actionSheetPicker.pickerView selectedRowInComponent:0]],
+                         scaleNames[(NSUInteger) [(UIPickerView *) actionSheetPicker.pickerView selectedRowInComponent:1]]];
+    }
+    else
+        resultMessage = [NSString stringWithFormat:@"%@ %@ selected.",
+                         self.selectedKey,
+                         self.selectedScale];
+    [[[UIAlertView alloc] initWithTitle:@"Success!" message:resultMessage delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+}
+*/
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - UIPickerViewDataSource Implementation
+/////////////////////////////////////////////////////////////////////////
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    NSLog(@"Number of components in picker view: 2");
+    return 2;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    // Returns
+    
+    NSInteger numberOfRows;
+    
+    switch (component) {
+        case 0:
+            numberOfRows = [self.carriers count];
+            break;
+        case 1:
+            numberOfRows = [self.carrierSpeeds count];
+            break;
+        default:
+            numberOfRows = 0;
+    }
+    
+    NSLog(@"Number of rows for component %li: %li", component, numberOfRows);
+    
+    return numberOfRows;
+}
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark UIPickerViewDelegate Implementation
+/////////////////////////////////////////////////////////////////////////
+
+// returns width of column and height of row for each component.
+- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
+{
+    return 160.0f;
+}
+
+
+/*- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
+ {
+ return
+ }
+ */
+// these methods return either a plain UIString, or a view (e.g UILabel) to display the row for the component.
+// for the view versions, we cache any hidden and thus unused views and pass them back for reuse.
+// If you return back a different object, the old one will be released. the view will be centered in the row rect
+
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    
+    NSString *text;
+    
+    switch (component) {
+        case 0:
+            text = self.carriers[(NSUInteger) row];
+            break;
+        case 1:
+            text = self.carrierSpeeds[(NSUInteger) row];
+            break;
+        default:
+            text = @"NOT FOUND";
+            break;
+    }
+    
+    NSLog(@"titleForRow: %li component: %li string: %@", row, (long)component, text);
+    return text;
+}
+
+/////////////////////////////////////////////////////////////////////////
+/*
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    NSLog(@"Row %li selected in component %li", (long)row, (long)component);
+    switch (component) {
+        case 0:
+            self.selectedKey = notesToDisplayForKey[(NSUInteger) row];
+            return;
+            
+        case 1:
+            self.selectedScale = scaleNames[(NSUInteger) row];
+            return;
+        default:break;
+    }
+}
+*/
+
 
 #pragma mark - UIPickerView
 
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-    return 1;
-}
-
--(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    
-    return self.carriers.count;
-}
+/*
 -(NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component {
     
-    return [[NSAttributedString alloc] initWithString:[self.carriers objectAtIndex:row]];
-}
-
--(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    NSString *text;
     
-    self.carrier = [self.carriers objectAtIndex:row];
+    switch (row) {
+        case 0:
+            text = self.carriers[(NSUInteger) row];
+        case 1:
+            text = self.carrierSpeeds[(NSUInteger) row];
+        default:
+            break;
+    }
+    
+    NSLog(@"Text: %@", text);
+    
+    return [[NSAttributedString alloc] initWithString:text];
+}
+*/
+
+- (void) actionSheetPickerDidSucceed:(AbstractActionSheetPicker *)actionSheetPicker origin:(id)origin
+{
+    NSLog(@"actionPickerDidSucceed:");
+    
+    UIPickerView *pickerView = (UIPickerView *)actionSheetPicker.pickerView;
+    
+    NSInteger selectedCarrier, selectedSpeed;
+    
+    selectedCarrier = [pickerView selectedRowInComponent:0];
+    selectedSpeed = [pickerView selectedRowInComponent:1];
+    
+    if (selectedSpeed == NO_CHANGE_ROW && selectedCarrier == NO_CHANGE_ROW)
+        return;
+    
+    if (selectedCarrier != NO_CHANGE_ROW) {
+        
+        self.carrier = self.carriers[selectedCarrier];
+    }
+    
+    if (selectedSpeed != NO_CHANGE_ROW){
+        self.carrierSpeed = self.carrierSpeeds[selectedSpeed];
+    }
+    
     [self updateCarrierOnScreenshot];
 }
- */
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    
+    NSLog(@"didSelectRow called");
+    /*
+    self.carrier = [self.carriers objectAtIndex:row];
+    [self updateCarrierOnScreenshot];*/
+}
+
 @end

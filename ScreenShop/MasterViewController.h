@@ -16,6 +16,8 @@
 #define NOTIFICATION_ROW 3
 #define NOKIA_ROW 4
 #define SAVE_ROW 5
+
+#define NO_CHANGE_ROW 0
 //#define TIME_ROW 4
 
 #define COLLECTION_VIEW_TOP_BORDER 20
