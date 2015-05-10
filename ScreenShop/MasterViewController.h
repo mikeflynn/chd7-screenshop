@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ReceptionView.h"
 #import "ActionSheetCustomPicker.h"
 
 #define BATTERY_NOT_SET -1
@@ -45,7 +46,7 @@
 @property (nonatomic) IBOutlet UIButton *modifyScreenshotButton;
 
 @property IBOutlet UIImageView *batteryOverlay;
-@property IBOutlet UIImageView *receptionOverlay;
+@property IBOutlet ReceptionView *receptionOverlay;
 @property IBOutlet UIView *carrierView;
 @property IBOutlet UILabel *carrierLabel;
 @property IBOutlet UIImageView *notificationOverlay;

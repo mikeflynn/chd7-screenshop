@@ -18,6 +18,11 @@
 
 @interface MasterViewController ()
 
+// Calculated color of status bar background
+@property (nonatomic) UIColor *statusBarBackground;
+// Color that status bar text should be
+@property (nonatomic) UIColor *statusBarTextColor;
+
 @property NSInteger batteryLevel;
 @property NSInteger receptionLevel;
 @property NSString *timeString;
@@ -26,9 +31,6 @@
 @property NSArray *carriers;
 @property NSString *carrierSpeed;
 @property NSArray *carrierSpeeds;
-
-@property NSString *signalStrength;
-@property NSArray *signalStrengths;
 
 @property NSMutableArray *notificationImages;
 @property NSString *selectedNotificationName;
@@ -70,6 +72,7 @@
     self.batteryLevel = BATTERY_NOT_SET;
     self.selectedNotificationIndex = 0;
     self.carrierSpeed = @"4G";
+    self.receptionLevel = 0; // Unchanged
     
     [self.screenshotImageView addSubview:self.batteryOverlay];
     [self.screenshotImageView addSubview:self.receptionOverlay];
@@ -78,7 +81,6 @@
     
     self.carriers = @[@"No change",@"AT&T", @"Verizon", @"T-Mobile", @"Sprint", @"Boost", @"Metro PCS", @"Vodafone UK (+)", @"Bell Canada (+)", @"Telecom NZ (+)", @"中国移动 (+)"];
     self.carrierSpeeds = @[@"No change", @"EDGE", @"3G", @"4G", @"4G LTE", @"7G", @"Warren G"];
-    self.signalStrengths = @[@"No bars", @"1 bar", @"3 bars", @"4 bars", @"5 bars"];
 }
 
 -(BOOL)prefersStatusBarHidden {
@@ -110,11 +112,16 @@
                                                     
                                                     if (result != nil && result.size.height/2 == [UIScreen mainScreen].bounds.size.height && result.size.width/2 == [UIScreen mainScreen].bounds.size.width)
                                                         self.screenshotImageView.image = result;
-                                                    
+                                                        [self imageUpdated];
                                                 });
                                             }];
 }
 
+-(void)setStatusBarBackground:(UIColor *)bgColor {
+    _statusBarBackground = bgColor;
+    // Set the background of the other views
+    self.receptionOverlay.backgroundColor = _statusBarBackground;
+}
 
 #pragma mark - Photos
 
@@ -169,10 +176,17 @@
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    
     self.screenshotImageView.image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
     [picker dismissViewControllerAnimated:YES completion:nil];
+    [self imageUpdated];
+}
+
+// Called when a new image finishes loading
+-(void)imageUpdated {
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    self.statusBarBackground = [self determineStatusBarBackgroundForImage:self.screenshotImageView.image];
+    // Reset reception level to that of image
+    [self receptionLevelAdjusted:0];
 }
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -355,16 +369,13 @@
 -(void)updateReceptionOnScreenshot {
     
     NSLog(@"updateReceptionOnScreenshot");
-    
     //use self.receptionLevel for value
-    if(self.receptionLevel == -1) {
+    if (self.receptionLevel == 0) {
         self.receptionOverlay.hidden = YES;
     } else {
-        NSString *receptionImg = [NSString stringWithFormat:@"reception_%ld", self.receptionLevel];
-        
-        self.receptionOverlay.image = [UIImage imageNamed:receptionImg];
         self.receptionOverlay.hidden = NO;
-        //self.receptionOverlay.image = nil;
+        self.receptionOverlay.receptionLevel = self.receptionLevel;
+        [self.receptionOverlay setNeedsDisplay];
     }
 }
 
@@ -556,48 +567,12 @@
 }
 
 -(IBAction)showReceptionPicker:(id)sender {
-    
-    /*
-    ActionSheetCustomPicker *receptionPicker = [[ActionSheetCustomPicker alloc] initWithTitle:@"Select Reception Level" delegate:self showCancelButton:YES origin:sender];
-    //sender initialSelections:@[self.carrier, [NSString stringWithFormat:@"%li", self.receptionLevel]]
-    receptionPicker.delegate = self;
-    
-    [receptionPicker showActionSheetPicker];*/
-    
-    //[ActionSheetCustomPicker showPickerWithTitle:@"Select Reception Level" delegate:self showCancelButton:YES origin:sender];
-    
     [ActionSheetStringPicker showPickerWithTitle:@"Select Reception Level" rows:@[@"No change", @"1 bar", @"2 bars", @"3 bars", @"4 bars"] initialSelection:self.receptionLevel doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
         
         self.receptionLevel = (selectedIndex < 4) ? selectedIndex : 4;
         NSLog(@"new reception level: %li", self.receptionLevel);
         
         [self updateReceptionOnScreenshot];
-        
-        /*
-        if (!self.carrier) {
-            self.carrier = @"Metro PCS";
-        }
-        
-        if (selectedIndex == 5)
-            self.carrierSpeed = @"LTE";
-        else if (selectedIndex == 6){
-            self.carrierSpeed = @"E";
-            self.receptionLevel = 1;
-            [self updateReceptionOnScreenshot];
-        }
-        else if (selectedIndex == 7)
-            self.carrierSpeed = @"3G";
-        else if (selectedIndex == 8)
-            self.carrierSpeed = @"4G";
-        else if (selectedIndex == 9)
-            self.carrierSpeed = @"LTE";
-        else if (selectedIndex == 10)
-            self.carrierSpeed = @"7G";
-        else if (selectedIndex == 11)
-            self.carrierSpeed = @"WARREN G";
-        [self updateCarrierOnScreenshot];
-         */
-        
         
     } cancelBlock:^(ActionSheetStringPicker *picker) {
         
@@ -824,6 +799,29 @@
     /*
     self.carrier = [self.carriers objectAtIndex:row];
     [self updateCarrierOnScreenshot];*/
+}
+
+-(UIColor*)determineStatusBarBackgroundForImage:(UIImage *) image {
+    int x = 0;
+    int y = 0;
+    UIColor *bgColor = NULL;
+    CFDataRef pixelData = CGDataProviderCopyData(CGImageGetDataProvider(image.CGImage));
+    const UInt8* data = CFDataGetBytePtr(pixelData);
+    
+    int pixelInfo = ((image.size.width * y) + x ) * 4; // 4 bytes per pixel
+    
+    UInt8 red   = data[pixelInfo + 0];
+    UInt8 green = data[pixelInfo + 1];
+    UInt8 blue  = data[pixelInfo + 2];
+    UInt8 alpha = data[pixelInfo + 3];
+    CFRelease(pixelData);
+    
+    bgColor = [UIColor colorWithRed:red/255.0f
+                           green:green/255.0f
+                            blue:blue/255.0f
+                           alpha:alpha/255.0f];
+
+    return bgColor;
 }
 
 @end

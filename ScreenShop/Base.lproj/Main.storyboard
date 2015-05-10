@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rS3-R9-Ivy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rS3-R9-Ivy">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -111,10 +111,10 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.96862751245498657" green="0.96862751245498657" blue="0.96862751245498657" alpha="0.0" colorSpace="deviceRGB"/>
                             </view>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="reception_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="GG4-bk-RyK">
-                                <rect key="frame" x="2" y="4" width="41" height="12"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
-                            </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ef5-Jg-Rj0" customClass="ReceptionView">
+                                <rect key="frame" x="0.0" y="0.0" width="48" height="15"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -158,7 +158,7 @@
                         <outlet property="carrierLabel" destination="pRW-ys-bEU" id="t1Q-ZM-QXK"/>
                         <outlet property="carrierView" destination="L8f-7r-inO" id="pne-rv-sZd"/>
                         <outlet property="notificationOverlay" destination="9NU-qb-7W6" id="jZm-Zw-NqT"/>
-                        <outlet property="receptionOverlay" destination="GG4-bk-RyK" id="LZy-T9-pKR"/>
+                        <outlet property="receptionOverlay" destination="ef5-Jg-Rj0" id="cTq-hg-czP"/>
                         <outlet property="screenshotImageView" destination="96s-ns-DS3" id="iIT-1j-sZH"/>
                     </connections>
                 </viewController>
@@ -171,7 +171,6 @@
         <image name="battery_full.png" width="54" height="21"/>
         <image name="fake-phone-for-app.png" width="750" height="1334"/>
         <image name="gmailNotification.png" width="750" height="136"/>
-        <image name="reception_1.png" width="50" height="15"/>
         <image name="screenshop-01.png" width="750" height="620"/>
         <image name="screenshop_logo-05.png" width="750" height="101"/>
         <image name="shadow-06.png" width="750" height="367"/>
