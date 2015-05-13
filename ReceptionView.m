@@ -20,8 +20,8 @@
         // Stroke an ellipse using a Bezier path
         UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(x, y, diameter, diameter)];
         path.lineWidth = 0.5;
-        [[UIColor blackColor] setFill];
-        [[UIColor blackColor] setStroke];
+        [self.circleColor setFill];
+        [self.circleColor setStroke];
         if (i < self.receptionLevel) {
             [path fill];
         } else {

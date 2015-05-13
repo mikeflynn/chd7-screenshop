@@ -121,6 +121,15 @@
     _statusBarBackground = bgColor;
     // Set the background of the other views
     self.receptionOverlay.backgroundColor = _statusBarBackground;
+    self.carrierView.backgroundColor = _statusBarBackground;
+    self.carrierLabel.backgroundColor = _statusBarBackground;
+    self.statusBarTextColor = [self determineTextColorForBackground:_statusBarBackground];
+}
+
+-(void)setStatusBarTextColor:(UIColor *)statusBarTextColor {
+    _statusBarTextColor = statusBarTextColor;
+    self.carrierLabel.textColor = statusBarTextColor;
+    self.receptionOverlay.circleColor = statusBarTextColor;
 }
 
 #pragma mark - Photos
@@ -533,37 +542,8 @@
 #pragma mark - ActionSheets
 
 -(IBAction)showCarrierPicker:(id)sender {
-    
-    ActionSheetCustomPicker *receptionPicker = [[ActionSheetCustomPicker alloc] initWithTitle:@"Pick Carrier and Speed" delegate:self showCancelButton:YES origin:sender];
-    //sender initialSelections:@[self.carrier, [NSString stringWithFormat:@"%li", self.receptionLevel]]
-    //receptionPicker.pickerView.tag = CARRIER_ROW;
-    //receptionPicker.delegate = self;
-    [receptionPicker showActionSheetPicker];
-    
-    /*
-    int selectedIndex = 0;
-    
-    if (self.carrier) {
-        for (int i = 0; i < self.carriers.count; ++i) {
-            if ([(NSString *)[self.carriers objectAtIndex:i] isEqualToString:self.carrier]){
-                selectedIndex = i;
-                break;
-            }
-        }
-    }
-    
-    [ActionSheetStringPicker showPickerWithTitle:@"Select Carrier" rows:self.carriers initialSelection:selectedIndex doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-
-        self.carrier = (selectedIndex == 0) ? nil : [self.carriers objectAtIndex:selectedIndex];
-        if (self.carrier && [self.carrier containsString:@" (+)"]){
-            self.carrier = [self.carrier substringToIndex:(self.carrier.length - 4)];
-        }
-        NSLog(@"new carrier: %@", self.carrier);
-        [self updateCarrierOnScreenshot];
-    } cancelBlock:^(ActionSheetStringPicker *picker) {
-        
-    } origin:sender];*/
-    
+    ActionSheetCustomPicker *carrierPicker = [[ActionSheetCustomPicker alloc] initWithTitle:@"Pick Carrier and Speed" delegate:self showCancelButton:YES origin:sender];
+    [carrierPicker showActionSheetPicker];
 }
 
 -(IBAction)showReceptionPicker:(id)sender {
@@ -822,6 +802,23 @@
                            alpha:alpha/255.0f];
 
     return bgColor;
+}
+
+-(UIColor*)determineTextColorForBackground:(UIColor *) bgColor {
+    UIColor *textColor = [UIColor blackColor];
+    CGFloat hue, saturation, brightness, alpha;
+    NSLog(@"1");
+    // If brightness is < .5, use light color
+    if ([bgColor getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha]) {
+        NSLog(@"2 %f %f %f", hue, saturation, brightness);
+
+        if (brightness < 0.7) {
+            NSLog(@"3");
+
+            textColor = [UIColor whiteColor];
+        }
+    }
+    return textColor;
 }
 
 @end

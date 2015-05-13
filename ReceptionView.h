@@ -12,6 +12,7 @@
 @interface ReceptionView : UIView
 
 @property NSInteger receptionLevel;
+@property UIColor *circleColor;
 
 - (void)drawRect:(CGRect) rect;
 
