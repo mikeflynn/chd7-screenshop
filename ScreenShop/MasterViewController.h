@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BatteryView.h"
 #import "ReceptionView.h"
 #import "ActionSheetCustomPicker.h"
 
@@ -45,7 +46,7 @@
 @property (nonatomic) IBOutlet UIButton *timeButton;
 @property (nonatomic) IBOutlet UIButton *modifyScreenshotButton;
 
-@property IBOutlet UIImageView *batteryOverlay;
+@property IBOutlet BatteryView *batteryOverlay;
 @property IBOutlet ReceptionView *receptionOverlay;
 @property IBOutlet UIView *carrierView;
 @property IBOutlet UILabel *carrierLabel;

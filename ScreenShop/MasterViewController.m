@@ -123,6 +123,7 @@
     self.receptionOverlay.backgroundColor = _statusBarBackground;
     self.carrierView.backgroundColor = _statusBarBackground;
     self.carrierLabel.backgroundColor = _statusBarBackground;
+    self.batteryOverlay.backgroundColor = _statusBarBackground;
     self.statusBarTextColor = [self determineTextColorForBackground:_statusBarBackground];
 }
 
@@ -194,6 +195,8 @@
 -(void)imageUpdated {
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     self.statusBarBackground = [self determineStatusBarBackgroundForImage:self.screenshotImageView.image];
+    self.batteryLevel = BATTERY_NOT_SET;
+    [self updateBatteryLevelOnScreenshot];
     // Reset reception level to that of image
     [self receptionLevelAdjusted:0];
 }
@@ -327,17 +330,17 @@
 #pragma mark - Updating Screenshot
 
 -(void)updateBatteryLevelOnScreenshot {
-    
-    if(self.batteryLevel == 0) {
+    if (self.batteryLevel == 0) {
         self.batteryOverlay.hidden = NO;
-        self.batteryOverlay.image = [UIImage imageNamed:@"battery_empty"];
-    } else if(self.batteryLevel == 100) {
-        self.batteryOverlay.image = [UIImage imageNamed:@"battery_full"];
+        self.batteryOverlay.batteryLevel = .10;
+        [self.batteryOverlay setNeedsDisplay];
+    } else if (self.batteryLevel == 100) {
+        self.batteryOverlay.batteryLevel = .85;
         self.batteryOverlay.hidden = NO;
+        [self.batteryOverlay setNeedsDisplay];
     } else {
         self.batteryOverlay.hidden = YES;
     }
-    
 }
 
 -(void)updateCarrierOnScreenshot {
